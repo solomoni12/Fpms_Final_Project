@@ -1,0 +1,93 @@
+{
+  "user": [
+    {
+      "id": "solomon@gmail.com",
+      "fname": "solomon",
+      "lname": "mwalupani",
+      "phone_number": "0789026656",
+      "physical_address": "p.o box 122, mbeya",
+      "password": "12345",
+      "gender": "male",
+      "role": "admin",
+      "isactive": true
+    },
+    {
+      "id": "isaac@gmail.com",
+      "fname": "isaac",
+      "lname": "isaac",
+      "phone_number": "0789026656",
+      "physical_address": "p.o box 122, mbeya",
+      "password": "12345",
+      "gender": "male",
+      "role": "staff",
+      "isactive": true
+    },
+    {
+      "id": "jenina@gmail.com",
+      "fname": "jenina",
+      "lname": "mwalupani",
+      "phone_number": "0789026656",
+      "physical_address": "p.o box 122, mbeya",
+      "password": "12345",
+      "gender": "female",
+      "role": "quality",
+      "isactive": true
+    },
+    {
+      "id": "mwalupani@gmail.com",
+      "fname": "solomon",
+      "lname": "mwalupani",
+      "phone_number": "09876543",
+      "physical_address": "morogoro",
+      "password": "12345",
+      "gender": "male",
+      "role": "staff",
+      "isactive": true
+    },
+    {
+      "id": "isaac@gmail.com",
+      "fname": "isacck",
+      "lname": "isaack",
+      "phone_number": "0789026656",
+      "physical_address": "moro",
+      "password": "12345",
+      "email": "isaac@gmail.com",
+      "gender": "male",
+      "role": "staff",
+      "isactive": true
+    },
+    {
+      "id": "frolian@gmail.com",
+      "fname": "frolian",
+      "lname": "frolian",
+      "phone_number": "0789026656",
+      "physical_address": "mbeya",
+      "password": "12345",
+      "gender": "male",
+      "role": "",
+      "isactive": false
+    },
+    {
+      "id": "mwalu@gmail.com",
+      "fname": "solomon",
+      "lname": "mwalupani",
+      "phone_number": "1234567898",
+      "physical_address": "mbeya",
+      "password": "12345",
+      "confirmPassword": "12345",
+      "gender": "male",
+      "role": "",
+      "isactive": "false"
+    }
+  ],
+  "role": [
+    {
+      "code": "staff",
+      "name": "staff"
+    },
+    {
+      "code": "quality",
+      "name": "quality"
+    }
+  ]
+}
