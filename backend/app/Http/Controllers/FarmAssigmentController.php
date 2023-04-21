@@ -169,71 +169,6 @@ class FarmAssigmentController extends Controller
         }
     }
     
-/*
-     public function update(FarmAssigmentRequest $request, $id) {
-        try {
-            $request->validated();
-            $assignment = FarmAssigment::findOrFail($id);
-    
-            // check if the authenticated user owns the farm associated with the farm assignment
-            $farm = $assignment->farm;
-            if (Auth::user()->id !== $farm->user_id) {
-                return response()->json(['error' => 'Unauthorized'], 401);
-            }
-    
-            // check if the authenticated user owns the worker associated with the farm assignment
-            $worker = $assignment->worker;
-            if (Auth::user()->id !== $worker->user_id) {
-                return response()->json(['error' => 'Unauthorized'], 401);
-            }
-    
-            $assignment->update([
-                'status' => $request->status,
-                'time_complished' => $request->time_complished
-            ]);
-
-            $assignedTime = strtotime($assignment->time_assigned);
-            $completedTime = strtotime($request->time_complished);
-
-            $timeDiff = $completedTime - $assignedTime;
-
-            // Calculate time difference in seconds, minutes, hours, and days
-            $timeDiffInSeconds = round($timeDiff);
-            $timeDiffInMinutes = round($timeDiff / 60, 2);
-            $timeDiffInHours = round($timeDiff / 3600, 2);
-            $timeDiffInDays = round($timeDiff / 86400, 2);
-
-            if ($timeDiffInMinutes > 0) {
-                // Convert to hours or days if applicable
-                if ($timeDiffInMinutes >= 60) {
-                    $timeDiffInHours = round($timeDiffInMinutes / 60, 2);
-                    if ($timeDiffInHours >= 24) {
-                        $timeDiffInDays = round($timeDiffInHours / 24, 2);
-                        $result = "Delayed by " . $timeDiffInDays . " days.";
-                    } else {
-                        $result = "Delayed by " . $timeDiffInHours . " hours.";
-                    }
-                } else {
-                    $result = "Delayed by " . $timeDiffInMinutes . " minutes.";
-                }
-                $assignment->update(['delayed' => $timeDiffInSeconds]);
-                $assignment->update(['ontime' => false]);
-            } else {
-                $assignment->update(['ontime' => true]);
-                $result = "Completed on time.";
-            }
-
-            return response()->json([
-                'message' => 'Farm assignment status and complished changed successfully.',
-                'result' => $result,
-                'assignment' => new FarmAssigmentResource($assignment)
-            ]);
-
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return response()->json(['error' => 'Farm assignment not found'], 404);
-        }
-    }*/
-    
 
     /**
      * Remove the specified resource from storage.
@@ -266,7 +201,7 @@ class FarmAssigmentController extends Controller
 
     // Function to Retrive All Farm assigment Based on Farm and Worker
     public function availableAssigment($worker_id, $farm_id){
-            try {
+        try {
                 // Get the worker and farm associated with the IDs
                 $worker = Worker::where('id', $worker_id)->where('user_id', Auth::user()->id)->firstOrFail();
                 $farm = Farm::where('id', $farm_id)->where('user_id', Auth::user()->id)->firstOrFail();
@@ -276,9 +211,9 @@ class FarmAssigmentController extends Controller
 
                 // Return the assignments as a resource collection
                 return FarmAssigmentResource::collection($assignments);
-            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
                 return response()->json(['error' => 'Worker or farm not found for the authenticated user'], 404);
-            }
+        }
     }
 
         // Function to retrive all Farm Assigment For specific Workers
