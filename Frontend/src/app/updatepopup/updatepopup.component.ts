@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -12,7 +12,7 @@ export class UpdatepopupComponent implements OnInit {
 
   rolelist:any;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private service: AuthService,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private dialog: MatDialogRef<UpdatepopupComponent>
