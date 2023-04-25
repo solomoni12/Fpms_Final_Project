@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate {
 
           let menu = route.url[0].path;
           
-          if(menu == 'user'){
+          if(menu === 'user'){
             if(this.service.GetUserrole() == '1'){ 
               return true;
             }

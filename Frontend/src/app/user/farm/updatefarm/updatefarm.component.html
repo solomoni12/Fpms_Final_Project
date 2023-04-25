@@ -1,0 +1,31 @@
+<div class="content">
+    <mat-card>
+        <mat-card-header>Farm Registration</mat-card-header>
+        <mat-card-content>
+            <!-- (ngSubmit)="Updatefarm()" -->
+            <form class="example-form" [formGroup]="updateForm" (ngSubmit)="Updatefarm()">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Farm Name</mat-label> 
+                  <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Farm Location</mat-label> 
+                    <input matInput formControlName="location">
+                </mat-form-field>
+                <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Land Title</mat-label> 
+                    <input matInput formControlName="land_title">
+                </mat-form-field> -->
+                <mat-form-field class="example-full-width">
+                    <mat-label>Size</mat-label> 
+                    <input matInput formControlName="size">
+                </mat-form-field>
+                <div >
+                    <button class="example-button-row" mat-raised-button color="primary">update</button>
+                    <a mat-dialog-close mat-raised-button color="accent">Concel</a>
+                </div>
+            </form>
+        </mat-card-content>
+      </mat-card>
+    
+</div>

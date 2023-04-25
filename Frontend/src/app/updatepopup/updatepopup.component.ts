@@ -26,14 +26,14 @@ export class UpdatepopupComponent implements OnInit {
     physical_address:this.formBuilder.control(''),
     password:this.formBuilder.control(''),
     email:this.formBuilder.control(''),
-    gender:this.formBuilder.control('male'),
+    sex:this.formBuilder.control('male'),
     role:this.formBuilder.control('', Validators.required),
     isactive:this.formBuilder.control('false')
   })
 
   updateuser(){
     if(this.registerform.valid){
-      this.service.updateuser()
+      this.service
         
     }else{}
   }
@@ -42,7 +42,8 @@ export class UpdatepopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.profileUser().subscribe(res=>{
-      this.rolelist=res;
+      this.rolelist = res;
+      console.log(this.rolelist);
     })
     if(this.data.usercode != null && this.data.usercode != ''){
       this.service.profileUser().subscribe(res=>{
@@ -56,7 +57,7 @@ export class UpdatepopupComponent implements OnInit {
           email:this.editdata.email,
           password:this.editdata.password,
           role:this.editdata.role,
-          gender:this.editdata.gender,
+          sex:this.editdata.gender,
           isactive:this.editdata.isactive
         })
       });

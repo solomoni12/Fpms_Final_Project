@@ -1,4 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/alertifyjs/build/css/alertify.css";
+@import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+@import "../node_modules/alertifyjs//build/css/themes/default.min.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Iconss');
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-fab {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.mat-fab .mat-button-wrapper {
+    padding: 0 !important;
+}
+
+.material-icons {
+    font-size: 18px;
+}
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+    font-size: 12px;
+}
+.example-button-row {
+    /* display: table-cell; */
+    max-width: 600px !important;
+    margin-top: 10px !important;
+    margin-right: 10px !important;
+    
+  }
+  table {
+    width: 90%;
+  }
+
+  .demo-table {
+    width: 100%;
+  }
+  
+  .demo-button-container {
+    padding-bottom: 16px;
+  }
+  
+  .demo-button + .demo-button {
+    margin-left: 8px;
+  }
+  mat-paginator{
+    width: 90%;
+  }

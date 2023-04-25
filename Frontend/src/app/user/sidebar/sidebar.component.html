@@ -1,0 +1,45 @@
+<div class="navbar">
+    <div class="top">
+        <!-- <mat-icon>notifications_none</mat-icon> -->
+    </div>
+    <div class="user">
+        <!-- <img src="https://theartistgsm.com/wp-content/uploads/2020/08/admin-settings-male.png" alt="">
+        <h4 class="name">Admin</h4>
+        <p class="email">mwalu@gmail.com</p> -->
+    </div>
+    <div class="menu">
+        <div class="menu-head">
+            <span>Dashboard</span>
+        </div>
+        <div class="menu-item">
+            <button mat-button class="menu-button" [routerLink]="['/dashboard']">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
+            <button mat-button class="menu-button" [routerLink]="['/farm']">
+                <mat-icon>dashboard</mat-icon>
+                <span>Farm</span>
+            </button>
+            <button mat-button class="menu-button" [routerLink]="['/worker']">
+                <mat-icon>account_circle</mat-icon>
+                <span>Worker</span>
+            </button>
+            <button mat-button class="menu-button" [routerLink]="['/assigment']">
+                <mat-icon>account_circle</mat-icon>
+                <span>Farm Assigment</span>
+            </button>
+            <button mat-button class="menu-button" [routerLink]="['/equipment']">
+                <mat-icon>view_list</mat-icon>
+                <span>Equipment</span>
+            </button>
+            <button mat-button class="menu-button" [routerLink]="['/user']">
+                <mat-icon>account_circle</mat-icon>
+                <span >User list</span>
+            </button>
+            <button mat-button class="menu-button" [routerLink]="['/setting']">
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+            </button>
+        </div>
+    </div>
+</div>

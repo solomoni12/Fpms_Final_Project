@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
     registerform=this.formBuilder.group({
-      //email:this.formBuilder.control('', Validators.compose([Validators.required, Validators.email])),
       fname:this.formBuilder.control('', Validators.required),
       lname:this.formBuilder.control('', Validators.required),
       phone_number:this.formBuilder.control('', Validators.required),
@@ -25,8 +24,8 @@ export class RegisterComponent implements OnInit {
       password_confirmation:this.formBuilder.control('', Validators.required),
       email:this.formBuilder.control('', Validators.compose([Validators.required,Validators.email])),
       sex:this.formBuilder.control('male'),
-      role:this.formBuilder.control('0'),
-      isactive:this.formBuilder.control('0'),
+      role:this.formBuilder.control(0),
+      isactive:this.formBuilder.control(0),
     })
 
     proceedregistration(){

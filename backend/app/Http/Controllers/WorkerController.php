@@ -124,11 +124,6 @@ class WorkerController extends Controller
             return response()->json(['message' => 'Worker not found.'], 404);
         }
         
-        // If the authenticated user is not authorized to delete the worker, return 401 response
-        if (!$worker->is($user)) {
-            return response()->json(['message' => 'Unauthorized to delete the worker.'], 401);
-        }
-        
         // Delete all the worker referees associated with the worker
         $worker->workerReferee()->delete();
         

@@ -27,6 +27,8 @@ export class AppComponent implements DoCheck{
       this.isadminuser = true;
     }else{
       this.isadminuser = false;
+      // this.router.navigate(['/dashboard']);
+
     }
   }
 

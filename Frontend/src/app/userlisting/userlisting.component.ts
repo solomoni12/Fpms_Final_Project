@@ -24,7 +24,8 @@ export class UserlistingComponent implements OnInit {
 
   Loaduser(){
     this.service.getUser().subscribe(res=>{
-      this.userlist = res;
+      this.userlist = res.data.user;
+      // console.log(this.userlist);
       this.dataSource = new MatTableDataSource(this.userlist);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -33,23 +34,23 @@ export class UserlistingComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  displayedColumns: string[] = ['fname', 'lname', 'phone_number', 'physical_address', 'email', 'role', 'status', 'action'];
+  displayedColumns: string[] = ['fname', 'lname', 'phone_number', 'physical_address', 'email','status', 'action'];
 
-  // UpdateUser(code:any){
-  //  const popup = this.dialog.open(UpdatepopupComponent,{
-  //     // enterAnimationDuration:'1000ms',
-  //     // exitAnimationDuration:'100ms'
-  //     width:'50%',
-  //     data:{
-  //       usercode:code
-  //     }
-  //   })
-  //   popup.afterClosed().subscribe(res=>{
-  //     this.Loaduser();
-  //   });
-  // }
+  UpdateUser(code:any){
+   const popup = this.dialog.open(UpdatepopupComponent,{
+      // enterAnimationDuration:'1000ms',
+      // exitAnimationDuration:'100ms',
+      width:'50%',
+      data:{
+        usercode:code
+      }
+    })
+    popup.afterClosed().subscribe(res=>{
+      this.Loaduser();
+    });
+  }
 
-  // opendialog(){
+  opendialog(){
     
-  // }
+  }
 }

@@ -20,6 +20,8 @@ class FarmAssigmentResource extends JsonResource
             'id' => $this->id,
             'status' => $this->status,
             'time_assigned' => $this->time_assigned,
+            'time_start' => $this->time_start,
+            'task_name' => $this->task_name,
             'time_complished' => $this->time_complished,
             'farm' => new FarmResource($this->farm),
             'worker' => new WorkerResource($this->worker),

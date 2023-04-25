@@ -17,7 +17,12 @@ class WorkerResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'fname'=>$this->fname,
+            'mname'=>$this->mname,
             'lname'=> $this->lname,
+            'sex' => $this->sex,
+            'phone_number'=>$this->phone_number,
+            'physical_address'=>$this->physical_address,
             'workerReferee' => $this->workerReferee,
             'relationships'=>[
                 'id' => (string)$this->user->id,

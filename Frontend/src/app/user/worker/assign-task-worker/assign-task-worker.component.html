@@ -1,0 +1,51 @@
+<div class="content">
+    <mat-card>
+        <mat-card-header>Assign Task</mat-card-header>
+        <mat-card-content>
+            <form class="example-form" [formGroup]="registerform" (ngSubmit)="proceedregistration()">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Task Name</mat-label> 
+                  <mat-select formControlName="task_name">
+                    <mat-option value="">Select task</mat-option>
+                    <mat-option *ngFor="let item of tasklist" [value]="item">
+                        {{ item }}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Status</mat-label> 
+                    <mat-select formControlName="status">
+                        <mat-option value="">Select Status</mat-option>
+                        <mat-option *ngFor="let item of statuslist" [value]="item">
+                            {{ item }}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Time Assigned</mat-label> 
+                    <input matInput formControlName="time_assigned">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Time Start</mat-label> 
+                    <input matInput formControlName="time_start">
+                  </mat-form-field>
+                  
+                <mat-form-field class="example-full-width">
+                    <mat-label>Farm Name</mat-label> 
+                    <input matInput formControlName="name">
+                    <mat-select formControlName="name">
+                        <mat-option value="">Select Name</mat-option>
+                        <mat-option *ngFor="let item of namelist" [value]="item.id">
+                            {{ item.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div >
+                    <button class="example-button-row" mat-raised-button color="primary">Submit</button>
+                    <a mat-dialog-close mat-raised-button color="accent">Concel</a>
+                </div>
+            </form>
+        </mat-card-content>
+      </mat-card>
+    
+</div>
