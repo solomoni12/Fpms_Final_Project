@@ -35,9 +35,6 @@ export class AssignTaskWorkerComponent implements OnInit {
       console.log(this.namelist);
     })
     console.log(this.data);
-    // if(this.data){
-    //   this.registerform.controls['id'].setValue(this.data.id);
-    // }
   }
 
   proceedregistration(){
@@ -46,7 +43,7 @@ export class AssignTaskWorkerComponent implements OnInit {
       this.service.assignTaskToWorker(this.registerform.value, this.data.id, this.registerform.value.name)
         .subscribe(res=>{
           console.log(res);
-          alertifyjs.success('Worker added sucessful!');
+          alertifyjs.success('Worker assign task sucessful');
           this.registerform.reset();
           this.dialog.close('update');
         })
