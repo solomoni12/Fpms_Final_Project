@@ -12,6 +12,9 @@ import { FarmComponent } from './user/farm/farm.component';
 import { WorkerComponent } from './user/worker/worker.component';
 import { EquipmentComponent } from './user/equipment/equipment.component';
 import { FarmAssigmentComponent } from './user/farm-assigment/farm-assigment.component';
+import { WorkerAssigmentComponent } from './user/worker-assigment/worker-assigment.component';
+import { WorkerRefereeListComponent } from './user/workerReferee/worker-referee-list/worker-referee-list.component';
+import { RefereesComponent } from './user/workerReferee/referees/referees.component';
 
 const routes: Routes = [
   {
@@ -21,8 +24,11 @@ const routes: Routes = [
       { path: 'user', component: UserlistingComponent, canActivate: [AuthGuard]},
       {path: 'setting', component:SettingComponent,canActivate: [AuthGuard]},
       {path: 'farm', component:FarmComponent,canActivate: [AuthGuard]},
+      {path: 'worker-assigment', component: WorkerAssigmentComponent, canActivate: [AuthGuard]},
       {path: 'assigment', component:FarmAssigmentComponent,canActivate: [AuthGuard]},
       {path: 'worker', component:WorkerComponent,canActivate: [AuthGuard]},
+      { path: 'referee', component: RefereesComponent, canActivate: [AuthGuard]},
+      {path: 'workerReferee', component:WorkerRefereeListComponent,canActivate: [AuthGuard]},
       {path: 'equipment', component:EquipmentComponent,canActivate: [AuthGuard]},
     ]
   },

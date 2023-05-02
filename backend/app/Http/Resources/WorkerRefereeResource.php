@@ -19,6 +19,7 @@ class WorkerRefereeResource extends JsonResource
             'fname' => $this->fname,
             'lname' => $this->lname,
             'phone_number'=>$this->phone_number,
+            'physical_address'=>$this->physical_address,
             'worker' => [
                 'id' => $this->worker->id,
                 'name' => $this->worker->lname,

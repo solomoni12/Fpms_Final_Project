@@ -36,7 +36,10 @@ import { AddworkerComponent } from './user/worker/addworker/addworker.component'
 import { UpdateworkerComponent } from './user/worker/updateworker/updateworker.component';
 import { FarmAssigmentlistComponent } from './user/farm-assigment/farm-assigmentlist/farm-assigmentlist.component';
 import { AssignTaskWorkerComponent } from './user/worker/assign-task-worker/assign-task-worker.component';
-
+import { WorkerAssigmentComponent } from './user/worker-assigment/worker-assigment.component';
+import { WorkerRefereeListComponent } from './user/workerReferee/worker-referee-list/worker-referee-list.component';
+import { RefereesComponent } from './user/workerReferee/referees/referees.component';
+import { AddRefereeComponent } from './user/workerReferee/add-referee/add-referee.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,11 @@ import { AssignTaskWorkerComponent } from './user/worker/assign-task-worker/assi
     AddworkerComponent,
     UpdateworkerComponent,
     FarmAssigmentlistComponent,
-    AssignTaskWorkerComponent
+    AssignTaskWorkerComponent,
+    WorkerAssigmentComponent,
+    WorkerRefereeListComponent,
+    RefereesComponent,
+    AddRefereeComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,16 +3,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AuthService } from 'src/app/service/auth.service';
-import * as alertifyjs from 'alertifyjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
+import { AddRefereeComponent } from '../add-referee/add-referee.component';
 
 @Component({
-  selector: 'app-farm-assigmentlist',
-  templateUrl: './farm-assigmentlist.component.html',
-  styleUrls: ['./farm-assigmentlist.component.css']
+  selector: 'app-worker-referee-list',
+  templateUrl: './worker-referee-list.component.html',
+  styleUrls: ['./worker-referee-list.component.css']
 })
-export class FarmAssigmentlistComponent implements OnInit {
+export class WorkerRefereeListComponent implements OnInit {
 
   constructor(
     private service: AuthService,
@@ -46,13 +46,22 @@ export class FarmAssigmentlistComponent implements OnInit {
 
   displayedColumns: string[] = ['fname', 'lname', 'sex', 'phone_number', 'physical_address', 'action'];
 
-  viewAssigment(workerId: number) {
-    const farmId = Number(this.route.snapshot.queryParamMap.get('farmId'));
-    this.service.getAssigment(workerId, farmId).subscribe(res => {
+  viewWorkerReferee(workerId: number) {
+    this.service.getReferee(workerId).subscribe(res => {
       this.assignmentlist = res.data;
       console.log(this.assignmentlist);
-      this.router.navigate(['/worker-assigment'], { queryParams: { id: workerId, farmId: farmId } });
+      this.router.navigate(['/referee'], { queryParams: { id: workerId} });
     });
   }
 
+  AddReferee(){
+    const addpop = this.dialog.open(AddRefereeComponent,{
+      enterAnimationDuration:'1000ms',
+       exitAnimationDuration:'100ms',
+       width:'50%',
+    })
+    addpop.afterClosed().subscribe(res=>{
+      this.LoadWorker();
+    });
+  }
 }

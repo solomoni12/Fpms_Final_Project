@@ -5,18 +5,41 @@ namespace App\Http\Controllers;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use App\Models\WorkerReferee;
-use Illuminate\Support\Facades\Response;
+use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use App\Http\Requests\WorkerRefereeRequest;
 use App\Http\Resources\WorkerRefereeResource;
 
 class WorkerRefereeController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    /*
+    public function index($workerId){
+        $worker = Auth::user()->worker();
+
+        if (!$worker) {
+            // Handle the case where the user doesn't have a worker associated with their account
+        }
+
+        $worker = $worker->findOrFail($workerId);
+        $workerReferees = $worker->workerReferees;
+        
+        return new WorkerRefereeResource($workerReferees);
+    }*/
+
+ 
+    
+
+    
+
+
+    
     public function index($workerId)
     {
         $workerReferees = WorkerReferee::where('worker_id', $workerId)->get();
@@ -28,10 +51,22 @@ class WorkerRefereeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getWorkerRefereesForLoggedInUser($workerId)
     {
-        //
+        
+        $user = auth()->user();
+        $worker = $user->worker()->find($workerId);
+        dd($workerId);
+    
+        if (!$worker) {
+            return response()->json(['message' => 'Worker not found'], 404);
+        }
+    
+        $workerReferees = $worker->workerReferees;
+    
+        return new WorkerRefereeResource($workerReferees);
     }
+    
 
     /**
      * Store a newly created resource in storage.

@@ -44,6 +44,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Farm } from '../model/farm/farm.module';
 import { Assignment } from '../model/assigment/assigment.module';
+import { Referee } from '../model/referee/referee.module';
 
 export class User {
   fname!: String;
@@ -141,19 +142,30 @@ export class AuthService {
   }
   // Worker Api end
 
-  // Assignment Api start
-  getAssigment(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/assignments/21/23', { headers: this.headers });
+  getAssigment(workerId: number, farmId: number): Observable<any> {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/assignments/${workerId}/${farmId}`, { headers: this.headers });
   }
+  
+  
 
-  // assignTaskToWorker(assign:Assignment, id:any, name:any): Observable<any> {
-  //   return this.http.post(this.api+'/'+id+'/'+farms+'/'+name, assign, { headers: this.headers });
-  // }
   assignTaskToWorker(assign:Assignment, workerId:number, farmId:number){
-    //  const url = `${this.apiUrl}/workers/${workerId}/farms/${farmId}/assignments`;
     const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
     return this.http.post(url, assign, { headers: this.headers } )
   }
+
+  // getTaskToWorker(assign:Assignment, workerId:number, farmId:number){
+  //   const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
+  //   return this.http.get(url, { headers: this.headers })
+  // }
   // http://127.0.0.1:8000/api/workers/4/farms/1/assignments'
   // Assignment Api End
+
+  //referee start
+  getReferee(workerId:number): Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/api/workers/${workerId}/workerreferees`, { headers: this.headers });
+  }
+  registerReferee(referee:Referee, workerId:number): Observable<any> {
+    return this.http.post(`http://127.0.0.1:8000/api/workers/${workerId}/referees`, referee);
+  }
+  
 }
