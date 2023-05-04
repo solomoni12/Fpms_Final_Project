@@ -40,6 +40,7 @@ import { WorkerAssigmentComponent } from './user/worker-assigment/worker-assigme
 import { WorkerRefereeListComponent } from './user/workerReferee/worker-referee-list/worker-referee-list.component';
 import { RefereesComponent } from './user/workerReferee/referees/referees.component';
 import { AddRefereeComponent } from './user/workerReferee/add-referee/add-referee.component';
+import { UpdateRefereeComponent } from './user/workerReferee/update-referee/update-referee.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { AddRefereeComponent } from './user/workerReferee/add-referee/add-refere
     WorkerRefereeListComponent,
     RefereesComponent,
     AddRefereeComponent,
+    UpdateRefereeComponent,
   ],
   imports: [
     BrowserModule,

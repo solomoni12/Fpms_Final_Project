@@ -41,8 +41,10 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::resource('/workers',WorkerController::class);
     Route::resource('/referees',WorkerRefereeController::class);
     // route::get('/workers/{workerId}/worker-referees', [WorkerRefereeController::class,'index']);
-    Route::put('/workers/{workerId}/referees/{refereeId}', [WorkerRefereeController::class, 'update']);
-    Route::delete('/workers/{worker}/referees/{workerRefereeId}',[WorkerRefereeController::class, 'destroy']);
+    // Route::put('/workers/{workerId}/referees/{refereeId}', [WorkerRefereeController::class, 'update']);
+    Route::put('/referees/{refereeId}', [WorkerRefereeController::class, 'update']);
+    Route::delete('/referees/{id}', [WorkerRefereeController::class, 'destroy']);
+    // Route::delete('/workers/{worker}/referees/{workerRefereeId}',[WorkerRefereeController::class, 'destroy']);
     Route::post('/workers/{workerId}/referees', [WorkerRefereeController::class,'store']);
     Route::post('/workers/{workerId}/farms/{farmId}/assignments', [FarmAssigmentController::class, 'store']);
     Route::put('/assignments/{id}', [FarmAssigmentController::class, 'update']);

@@ -128,30 +128,22 @@ class WorkerRefereeController extends Controller
      */
     
     //  Function to update WorkerReferees
-    public function update(WorkerRefereeRequest $request, $id, $workerrefereeId){
+    public function update(Request $request, $refereeId){
         $user = Auth::user();
-        $worker = $user->worker()->find($id);
-
-        if (!$worker) {
-            return Response::json(['message' => 'Worker not found']);
-        }
-
-        $workerreferee = $worker->workerReferee()->find($workerrefereeId);
+        
+        $workerreferee = WorkerReferee::find($refereeId);
+        
         if (!$workerreferee) {
             return Response::json(['message' => 'WorkerReferee not found']);
         }
-
-        if ($workerreferee->worker_id != $worker->id) {
+    
+        if ($workerreferee->worker->user_id != $user->id) {
             return Response::json(['message' => 'Unauthorized']);
         }
-
+    
         // Update the worker referee with the new data
-        $workerreferee->update([
-            'fname' => $request->fname,
-            'lname' => $request->lname,
-            'physical_address' => $request->physical_address
-        ]);
-
+        $workerreferee->update($request->all());
+    
         return new WorkerRefereeResource($workerreferee);
     }
 
@@ -164,6 +156,19 @@ class WorkerRefereeController extends Controller
      */
     
     //Function to Delete Worker Referee   
+    public function destroy(Request $request, $workerrefereeId){
+        $user = Auth::user();
+        $workerreferee = $user->workerReferee()->find($workerrefereeId);
+    
+        if (!$workerreferee) {
+            return Response::json(['message' => 'WorkerReferee not found']);
+        }
+    
+        $workerreferee->delete();
+        return Response::json(['message' => 'WorkerReferee deleted successfully']);
+    }
+    
+    /*
      public function destroy(Request $request, $id, $workerrefereeId){
         $user = Auth::user();
         $worker = $user->worker()->find($id);
@@ -183,5 +188,5 @@ class WorkerRefereeController extends Controller
 
         $workerreferee->delete();
          return Response::json(['message' => 'WorkerReferee deleted successfully']);
-    }
+    }*/
 }

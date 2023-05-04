@@ -76,6 +76,7 @@ export class AuthService {
   apiurl = 'http://127.0.0.1:8000/api/farms';
   api = 'http://127.0.0.1:8000/api/workers';
   urlapi = 'http://127.0.0.1:8000/api';
+  referee = 'http://127.0.0.1:8000/api/referees'
 
   updateuser(code:any, inputdata:any){
     return this.http.put(this.apiurl+'/'+code, inputdata);
@@ -153,11 +154,6 @@ export class AuthService {
     return this.http.post(url, assign, { headers: this.headers } )
   }
 
-  // getTaskToWorker(assign:Assignment, workerId:number, farmId:number){
-  //   const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
-  //   return this.http.get(url, { headers: this.headers })
-  // }
-  // http://127.0.0.1:8000/api/workers/4/farms/1/assignments'
   // Assignment Api End
 
   //referee start
@@ -167,5 +163,13 @@ export class AuthService {
   registerReferee(referee:Referee, workerId:number): Observable<any> {
     return this.http.post(`http://127.0.0.1:8000/api/workers/${workerId}/referees`, referee);
   }
-  
+  updateReferee(data:any, id: number){
+    return this.http.put(this.referee+'/'+id, data, { headers: this.headers });
+  }
+  deleteworkerReferee(id:any){
+    
+    return this.http.delete(this.referee+'/'+id, { headers: this.headers });
+  }
+  // http://127.0.0.1:8000/api/workers/referees/4
+  // http://127.0.0.1:8000/api/workers/referees/3
 }

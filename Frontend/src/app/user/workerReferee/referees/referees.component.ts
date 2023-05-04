@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { AddRefereeComponent } from '../add-referee/add-referee.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UpdateRefereeComponent } from '../update-referee/update-referee.component';
+import * as alertifyjs from 'alertifyjs';
 
 @Component({
   selector: 'app-referees',
@@ -56,6 +58,30 @@ export class RefereesComponent implements OnInit {
     });
   }
   
-  updatereferee(element:any){}
-  deletereferee(element:any){}
+  updatereferee(element:any){
+    const popup = this.dialog.open(UpdateRefereeComponent,{
+      enterAnimationDuration:'1000ms',
+      exitAnimationDuration:'100ms',
+      width:'50%',
+      data:element
+    })
+    popup.afterClosed().subscribe(res=>{
+      this.LoadWorker();
+    });
+  }
+  // deletereferee(element:any){}
+  deletereferee(id: number){
+    const deletepop = this.service.deleteworkerReferee(id)
+          .subscribe({
+            next:(res)=>{
+              alertifyjs.success('Worker referee deleted')
+            },
+            error:()=>{
+              alertifyjs.error('Failed. Please Try Again');
+            }
+          })
+      if(deletepop){
+        this.LoadWorker();
+      }
+    }
 }
