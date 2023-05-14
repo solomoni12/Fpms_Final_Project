@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Crop;
 use App\Models\User;
 use App\Models\OwnerInput;
 use App\Models\FarmAssigment;
@@ -34,5 +35,9 @@ class Farm extends Model
     
     public function ownerInput(){
         return $this->hasMany(OwnerInput::class);
+    }
+    
+    public function crops(){
+        return $this->hasMany(Crop::class);
     }
 }
