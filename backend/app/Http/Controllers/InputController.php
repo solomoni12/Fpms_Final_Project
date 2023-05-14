@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Input;
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
 use App\Http\Resources\InputResource;
 use App\Http\Requests\StoreInputRequest;
 
 class InputController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    use HttpResponses;
+    
     public function index()
     {
-      //
+        $input = Input::all();
+        return $this->success([
+            'user' => $input
+        ]);
     }
 
     /**

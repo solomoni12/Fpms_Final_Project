@@ -47,11 +47,10 @@ export class FarmAssigmentlistComponent implements OnInit {
   displayedColumns: string[] = ['fname', 'lname', 'sex', 'phone_number', 'physical_address', 'action'];
 
   viewAssigment(workerId: number) {
-    const farmId = Number(this.route.snapshot.queryParamMap.get('farmId'));
-    this.service.getAssigment(workerId, farmId).subscribe(res => {
+    this.service.getAssigment(workerId).subscribe(res => {
       this.assignmentlist = res.data;
       console.log(this.assignmentlist);
-      this.router.navigate(['/worker-assigment'], { queryParams: { id: workerId, farmId: farmId } });
+      this.router.navigate(['/worker-assigment'], { queryParams: { id: workerId } });
     });
   }
 

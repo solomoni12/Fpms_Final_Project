@@ -5,20 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Input;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\EquipmentResource;
 use App\Http\Requests\StoreEquipmentRequest;
 
 class EquipmentController extends Controller
 {
+
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+    public function index(){
+
+    //  $equipment = Equipment::where('input_id', $inputId)->get();
+    //  return $this->success([
+    //     'equipment' => $equipment
+    // ]);
+    return EquipmentResource::collection(
+        Equipment::where('user_id', Auth::user()->id)->get()
+    );
+}
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +48,8 @@ class EquipmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEquipmentRequest $request, $inputId){
+    public function findEquipment(StoreEquipmentRequest $request, $inputId){
+        return $inputId;
         $request->validated($request->all());
     
         // Get the authenticated user's id
@@ -67,33 +80,7 @@ class EquipmentController extends Controller
         }
     
         return response()->json($equipment, 201);
-    }
-    
-     /*
-    public function store(StoreEquipmentRequest $request, $inputId){
-        
-        $request->validated($request->all());
-
-        // Get the authenticated user's id
-        $userId = auth()->user()->id;
-
-        // Check if the input exists in the database
-        $input = Input::find($inputId);
-        if (!$input) {
-            return response()->json(['message' => 'Input not found'], 404);
-        }
-
-        $equipment = Equipment::create([
-            'user_id' => $userId,
-            'input_id' => $inputId,
-            'quantity' => $request->quantity,
-        ]);
-
-        return response()->json($equipment, 201);
-    }
-
-*/
-    
+    }    
 
     /**
      * Display the specified resource.

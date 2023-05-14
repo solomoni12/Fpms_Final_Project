@@ -48,3 +48,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   mat-paginator{
     width: 90%;
   }
+
+  .menu-button{
+    display: flex !important;
+    margin-bottom: 1px !important;
+    position: relative !important;
+    width: 100% !important;
+    padding-left: 10px !important;
+  }

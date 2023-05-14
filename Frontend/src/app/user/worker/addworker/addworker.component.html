@@ -15,10 +15,15 @@
                     <mat-label>Last Name</mat-label> 
                     <input matInput formControlName="lname">
                   </mat-form-field>
-                <mat-form-field class="example-full-width">
+                  <mat-form-field class="example-full-width">
                     <mat-label>Sex</mat-label> 
-                    <input matInput formControlName="sex">
-                </mat-form-field>
+                    <mat-select formControlName="sex">
+                        <mat-option value="">Select Sex</mat-option>
+                        <mat-option *ngFor="let item of sexlist" [value]="item">
+                            {{ item }}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Phone Number</mat-label> 
                     <input matInput formControlName="phone_number">

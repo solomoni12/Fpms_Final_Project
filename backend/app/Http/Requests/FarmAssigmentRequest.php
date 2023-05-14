@@ -26,9 +26,9 @@ class FarmAssigmentRequest extends FormRequest
         return [
             'task_name' => 'required|string|max:255',
             'status' => 'required|in:in progress,complete,incomplete',
-            'time_start' => 'required|date|date_format:Y-m-d',
-            'time_assigned' => 'required|date_format:Y-m-d H:i:s',
-            'time_complished' => 'nullable|date|after_or_equal:time_start|date_format:Y-m-d H:i:s',
+            'time_start' => 'required|date|before_or_equal:time_assigned',
+            'time_assigned' => 'required|date',
+            'time_complished' => 'nullable|date|after_or_equal:time_start',
         ];
     }
 }

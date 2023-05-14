@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import * as alertifyjs from 'alertifyjs';
 
 @Component({
   selector: 'app-login',
@@ -41,11 +42,20 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('lastname', this.userdata.lname);
             sessionStorage.setItem('email', this.userdata.email);
             
+            alertifyjs.success('login sucessful');
             this.router.navigate(['']);
           }
-        }
-      );
+          else{
+
+            alertifyjs.error('You are not active contact admin via mwalupani@gmail.com');
+            this.loginform.reset();
+          }
+        });
+    }else{
+      // console.log(this.userdata);
+      alertifyjs.error('Invalid username or password. Please Try again!');
     }
+    
   }
 
   ngOnInit(): void {}

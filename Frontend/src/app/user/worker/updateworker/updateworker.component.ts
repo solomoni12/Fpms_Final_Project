@@ -12,6 +12,7 @@ import * as alertifyjs from 'alertifyjs';
 export class UpdateworkerComponent implements OnInit {
 
   updateForm !: FormGroup;
+  sexlist = ['female', 'male'];
   constructor(private formBuilder: UntypedFormBuilder,
     private service: AuthService,
     @Inject(MAT_DIALOG_DATA) public editData:any,

@@ -12,6 +12,8 @@ import * as alertifyjs from 'alertifyjs';
 })
 export class AddworkerComponent implements OnInit {
 
+
+  sexlist = ['male','female'];
   constructor(private formBuilder: UntypedFormBuilder,
     private service: AuthService,
     private router: Router,

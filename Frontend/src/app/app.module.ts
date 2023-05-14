@@ -41,6 +41,10 @@ import { WorkerRefereeListComponent } from './user/workerReferee/worker-referee-
 import { RefereesComponent } from './user/workerReferee/referees/referees.component';
 import { AddRefereeComponent } from './user/workerReferee/add-referee/add-referee.component';
 import { UpdateRefereeComponent } from './user/workerReferee/update-referee/update-referee.component';
+import { AddassigmentComponent } from './user/worker-assigment/addassigment/addassigment.component';
+import { UpdateassigmentComponent } from './user/worker-assigment/updateassigment/updateassigment.component';
+import { DeleteassigmentComponent } from './user/worker-assigment/deleteassigment/deleteassigment.component';
+import { EquipmentlistComponent } from './user/equipment/equipmentlist/equipmentlist.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,10 @@ import { UpdateRefereeComponent } from './user/workerReferee/update-referee/upda
     RefereesComponent,
     AddRefereeComponent,
     UpdateRefereeComponent,
+    AddassigmentComponent,
+    UpdateassigmentComponent,
+    DeleteassigmentComponent,
+    EquipmentlistComponent,
   ],
   imports: [
     BrowserModule,

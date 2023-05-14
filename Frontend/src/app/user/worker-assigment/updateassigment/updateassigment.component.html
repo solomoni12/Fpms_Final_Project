@@ -1,0 +1,28 @@
+<div class="content">
+    <mat-card>
+        <mat-card-header>Assigment update</mat-card-header>
+        <mat-card-content>
+            <!-- (ngSubmit)="Updatefarm()" -->
+            <form class="example-form" [formGroup]="updateForm" (ngSubmit)="Updateassigment()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Status</mat-label> 
+                    <mat-select formControlName="status">
+                        <mat-option value="">Select Sex</mat-option>
+                        <mat-option *ngFor="let item of status" [value]="item">
+                            {{ item }}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Time Complished</mat-label> 
+                  <input type="date" matInput formControlName="time_complished">
+                </mat-form-field>
+                <div >
+                    <button class="example-button-row" mat-raised-button color="primary">update</button>
+                    <a mat-dialog-close mat-raised-button color="accent">Concel</a>
+                </div>
+            </form>
+        </mat-card-content>
+      </mat-card>
+    
+</div>

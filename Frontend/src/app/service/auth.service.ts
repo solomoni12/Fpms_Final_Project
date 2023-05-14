@@ -143,12 +143,17 @@ export class AuthService {
   }
   // Worker Api end
 
-  getAssigment(workerId: number, farmId: number): Observable<any> {
-    return this.http.get<any>(`http://127.0.0.1:8000/api/assignments/${workerId}/${farmId}`, { headers: this.headers });
+  getAssigment(workerId: number): Observable<any> {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/workers/${workerId}/assignments`, { headers: this.headers });
   }
   
-  
-
+  updateAssigment(data:any, id: number){
+    return this.http.put(`http://127.0.0.1:8000/api/assignments/${id}`, data, { headers: this.headers });
+  }
+  deleteAssigment(id:any){
+    return this.http.delete(`http://127.0.0.1:8000/api/assignments/${id}`, { headers: this.headers });
+  }
+// http://127.0.0.1:8000/api/assignments/2
   assignTaskToWorker(assign:Assignment, workerId:number, farmId:number){
     const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
     return this.http.post(url, assign, { headers: this.headers } )
@@ -170,6 +175,14 @@ export class AuthService {
     
     return this.http.delete(this.referee+'/'+id, { headers: this.headers });
   }
-  // http://127.0.0.1:8000/api/workers/referees/4
-  // http://127.0.0.1:8000/api/workers/referees/3
+
+  // Input Service start
+  getInput(): Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:8000/api/inputs', { headers: this.headers });
+  }
+  
+  getEquipment():Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:8000/api/equipments/', {headers: this.headers});
+  }
+
 }

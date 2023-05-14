@@ -200,6 +200,22 @@ class FarmAssigmentController extends Controller
     }
 
     // Function to Retrive All Farm assigment Based on Farm and Worker
+    public function availableAssigment($worker_id) {
+        try {
+            // Get the worker associated with the ID
+            $worker = Worker::where('id', $worker_id)->where('user_id', Auth::user()->id)->firstOrFail();
+    
+            // Get all farm assignments for the worker
+            $assignments = FarmAssigment::where('worker_id', $worker->id)->get();
+    
+            // Return the assignments as a resource collection
+            return FarmAssigmentResource::collection($assignments);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['error' => 'Worker not found for the authenticated user'], 404);
+        }
+    }
+    
+    /*
     public function availableAssigment($worker_id, $farm_id){
         try {
                 // Get the worker and farm associated with the IDs
@@ -214,7 +230,7 @@ class FarmAssigmentController extends Controller
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
                 return response()->json(['error' => 'Worker or farm not found for the authenticated user'], 404);
         }
-    }
+    }*/
 
         // Function to retrive all Farm Assigment For specific Workers
     public function availableAssigmentWorker($worker_id){

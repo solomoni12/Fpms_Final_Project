@@ -25,9 +25,6 @@ class FarmController extends Controller
      */
     public function index()
     {
-        // return FarmResource::collection(
-        //     Farm::where('user_id',Auth::user()->id)->get()
-        // );
         $farm = Farm::where('user_id',Auth::user()->id)->get();
         return $this->success([
             'user' => $farm

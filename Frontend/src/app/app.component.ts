@@ -8,7 +8,7 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements DoCheck{
-  title = 'Frontend';
+  title = 'Fpms-Farm Production Management System';
 
   ismenurequired = false;
   isadminuser = false;
@@ -26,6 +26,7 @@ export class AppComponent implements DoCheck{
     if(this.service.GetUserrole() === '1'){
       this.isadminuser = true;
     }else{
+      // this.router.navigate(['/dashboard']);
       this.isadminuser = false;
       // this.router.navigate(['/dashboard']);
 

@@ -23,11 +23,11 @@
                   </mat-form-field>
                   <mat-form-field class="example-full-width">
                     <mat-label>Time Assigned</mat-label> 
-                    <input matInput formControlName="time_assigned" placeholder="ex.2023-02-03 02:50:01 ">
+                    <input type="date" matInput formControlName="time_assigned" placeholder="ex.2023-02-03 02:50:01 ">
                   </mat-form-field>
                   <mat-form-field class="example-full-width">
                     <mat-label>Time Start</mat-label> 
-                    <input matInput formControlName="time_start"placeholder="ex. 2023-02-02 ">
+                    <input type="date" matInput formControlName="time_start"placeholder="ex. 2023-02-02 ">
                   </mat-form-field>
                   
                 <mat-form-field class="example-full-width">
@@ -41,7 +41,7 @@
                     </mat-select>
                 </mat-form-field>
                 <div >
-                    <button class="example-button-row" mat-raised-button color="primary">Submit</button>
+                    <button routerLink="/assigment" class="example-button-row" mat-raised-button color="primary">Submit</button>
                     <a mat-dialog-close mat-raised-button color="accent">Concel</a>
                 </div>
             </form>

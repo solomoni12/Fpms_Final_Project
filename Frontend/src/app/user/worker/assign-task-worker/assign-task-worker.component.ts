@@ -23,8 +23,8 @@ export class AssignTaskWorkerComponent implements OnInit {
 
   registerform=this.formBuilder.group({
     task_name:this.formBuilder.control('', Validators.required),
-    time_start:this.formBuilder.control('', Validators.required),
-    time_assigned:this.formBuilder.control('', Validators.required),
+    time_start:this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]),
+    time_assigned:this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]),
     name:this.formBuilder.control('', Validators.required),
     status:this.formBuilder.control('', Validators.required),
   })

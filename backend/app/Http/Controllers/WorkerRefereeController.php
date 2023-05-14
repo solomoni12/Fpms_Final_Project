@@ -14,31 +14,6 @@ use App\Http\Resources\WorkerRefereeResource;
 class WorkerRefereeController extends Controller
 {
     use HttpResponses;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    /*
-    public function index($workerId){
-        $worker = Auth::user()->worker();
-
-        if (!$worker) {
-            // Handle the case where the user doesn't have a worker associated with their account
-        }
-
-        $worker = $worker->findOrFail($workerId);
-        $workerReferees = $worker->workerReferees;
-        
-        return new WorkerRefereeResource($workerReferees);
-    }*/
-
- 
-    
-
-    
-
-
     
     public function index($workerId)
     {
