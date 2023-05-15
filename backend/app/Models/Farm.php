@@ -36,7 +36,7 @@ class Farm extends Model
     public function ownerInput(){
         return $this->hasMany(OwnerInput::class);
     }
-    
+
     public function crops(){
         return $this->hasMany(Crop::class);
     }

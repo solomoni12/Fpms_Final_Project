@@ -3,10 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CropController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\OwnerInputController;
 use App\Http\Controllers\FarmAssigmentController;
@@ -39,7 +41,9 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/farms',FarmController::class);
     Route::resource('/inputs',InputController::class);
+    Route::resource('/products',ProductController::class);
     Route::resource('/workers',WorkerController::class);
+    Route::resource('/crops',CropController::class);
     Route::resource('/referees',WorkerRefereeController::class);
     Route::resource('/equipments',EquipmentController::class);
     Route::put('/referees/{refereeId}', [WorkerRefereeController::class, 'update']);
@@ -58,6 +62,7 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::put('/equipments/{id}', [EquipmentController::class, 'update']);
     Route::get('/workers/{workerId}/referees', [WorkerRefereeController::class, 'getWorkerRefereesForLoggedInUser']);
     Route::get('/workers/{workerId}/workerreferees', [WorkerRefereeController::class, 'index']);
-
+    Route::get('/farms/{farmId}/crops', [CropController::class, 'index']);
+    Route::post('/farms/{farmId}/crops', [CropController::class,'store']);
 
 });

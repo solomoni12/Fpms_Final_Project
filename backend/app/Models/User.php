@@ -45,6 +45,10 @@ class User extends Authenticatable
     public function workerReferee(){
         return $this->hasManyThrough(WorkerReferee::class, Worker::class);
     }
+    
+    public function crops(){
+        return $this->hasManyThrough(Crop::class, Farm::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

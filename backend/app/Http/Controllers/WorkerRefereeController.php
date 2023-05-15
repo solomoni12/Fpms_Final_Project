@@ -26,8 +26,8 @@ class WorkerRefereeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getWorkerRefereesForLoggedInUser($workerId)
-    {
+
+    public function getWorkerRefereesForLoggedInUser($workerId){
         
         $user = auth()->user();
         $worker = $user->worker()->find($workerId);
@@ -78,8 +78,8 @@ class WorkerRefereeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(WorkerReferee $workerreferee)
-    {
+    public function show(WorkerReferee $workerreferee){
+
         //
     }
 
@@ -143,25 +143,5 @@ class WorkerRefereeController extends Controller
         return Response::json(['message' => 'WorkerReferee deleted successfully']);
     }
     
-    /*
-     public function destroy(Request $request, $id, $workerrefereeId){
-        $user = Auth::user();
-        $worker = $user->worker()->find($id);
-
-        if (!$worker) {
-            return Response::json(['message' => 'Worker not found']);
-        }
-
-        $workerreferee = $worker->workerReferee()->find($workerrefereeId);
-        if (!$workerreferee) {
-            return Response::json(['message' => 'WorkerReferee not found']);
-         }
-
-        if ($workerreferee->worker_id != $worker->id) {
-            return Response::json(['message' => 'Unauthorized']);
-        }
-
-        $workerreferee->delete();
-         return Response::json(['message' => 'WorkerReferee deleted successfully']);
-    }*/
+    
 }

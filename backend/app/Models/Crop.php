@@ -11,7 +11,7 @@ class Crop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firm_id',
+        'farm_id',
         'crop_name',
         'planting_date',
         'harvest_date',
