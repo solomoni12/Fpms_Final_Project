@@ -64,5 +64,7 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get('/workers/{workerId}/workerreferees', [WorkerRefereeController::class, 'index']);
     Route::get('/farms/{farmId}/crops', [CropController::class, 'index']);
     Route::post('/farms/{farmId}/crops', [CropController::class,'store']);
+    Route::post('/farms/{farmId}/crops/{cropId}/products', [ProductController::class, 'store']);
+    Route::get('farms/{farmId}/products', [ProductController::class,'getAllProduct']);
 
 });

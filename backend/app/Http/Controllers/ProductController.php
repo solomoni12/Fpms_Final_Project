@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -26,16 +30,41 @@ class ProductController extends Controller
         //
     }
 
+    //function to retrive all product
+    public function getAllProduct($farmId){
+        
+        $products = Product::where('farm_id', $farmId)->get();
+        return ProductResource::collection($products);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
+     public function store(ProductRequest $request, $farmId, $cropId){
+        
+         try {
+             $request->validated();
+             $crop = Auth::user()->crops()->firstOrFail();
+             $farm = Auth::user()->farm()->findOrFail($farmId);
+
+             $product = Product::create([
+                 'crop_id' => $cropId,
+                 'farm_id' => $farmId,
+                 'product_name' => $request->product_name,
+                 'harvest_date' => $request->harvest_date,
+                 'quantity' => $request->quantity,
+                 'status' => $request->status,
+             ]);
+     
+             return new ProductResource($product);
+         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+             return response()->json(['error' => 'crop or farm not found'], 404);
+         }
+     }
 
     /**
      * Display the specified resource.
@@ -66,10 +95,19 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $productId){
+
+        try {
+
+            $product = Product::findOrFail($productId);
+            $product->update($request->all());
+    
+            return new ProductResource($product);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -77,8 +115,19 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+
+    public function destroy($productId){
+
+        try {
+
+            $product = Product::findOrFail($productId);
+            $product->delete();
+            
+            return response()->json(['message' => 'Product deleted successfully']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
     }
+
 }
