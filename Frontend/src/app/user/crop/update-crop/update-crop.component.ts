@@ -21,15 +21,15 @@ export class UpdateCropComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateForm = this.formBuilder.group({
-        name:['', Validators.required],
-        plantingDate:['', Validators.required],
+        crop_name:['', Validators.required],
+        planting_date:['', Validators.required],
         harvest_date:['', Validators.required],
         expected_product:['', Validators.required],
       });
       console.log(this.editData);
       if(this.editData){
-        this.updateForm.controls['name'].setValue(this.editData.crop_name);
-        this.updateForm.controls['plantingDate'].setValue(this.editData.planting_date);
+        this.updateForm.controls['crop_name'].setValue(this.editData.crop_name);
+        this.updateForm.controls['planting_date'].setValue(this.editData.planting_date);
         this.updateForm.controls['harvest_date'].setValue(this.editData.harvest_date);
         this.updateForm.controls['expected_product'].setValue(this.editData.expected_product);
       }
@@ -38,7 +38,7 @@ export class UpdateCropComponent implements OnInit {
 
   Updatefarm(){
     if(this.updateForm.valid){
-      this.service.UpdateProduct(this.updateForm.value, this.editData.id)
+      this.service.UpdateCrop(this.updateForm.value, this.editData.id)
       .subscribe({
         next:(res)=>{
         alertifyjs.success('farm detail updated sucessful');

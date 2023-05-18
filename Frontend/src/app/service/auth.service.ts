@@ -45,6 +45,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Farm } from '../model/farm/farm.module';
 import { Assignment } from '../model/assigment/assigment.module';
 import { Referee } from '../model/referee/referee.module';
+import { Crop } from '../model/crop/crop.module';
 
 export class User {
   fname!: String;
@@ -186,15 +187,21 @@ export class AuthService {
   }
 
   // Crop API http://127.0.0.1:8000/api/farms/1/crops
+  registerCrop(crop:Crop, farmId:number): Observable<any> {
+    return this.http.post(`http://127.0.0.1:8000/api/farms/${farmId}/crops`, crop);
+  }
   getCrop(farmId:number): Observable<any>{
     return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/crops`, { headers: this.headers });
+  }
+  UpdateCrop(data:any, id: number){
+    return this.http.put(`http://127.0.0.1:8000/api/crops/${id}`, data, { headers: this.headers });
   }
   deleteCrop(id:any){
     return this.http.delete(`http://127.0.0.1:8000/api/crops/${id}`, { headers: this.headers });
   }
 // end crop api
 
-// start Product Api http://127.0.0.1:8000/api/crops/8
+// start Product Api
   getProduct(farmId:number): Observable<any>{
     return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/products`, { headers: this.headers });
   }

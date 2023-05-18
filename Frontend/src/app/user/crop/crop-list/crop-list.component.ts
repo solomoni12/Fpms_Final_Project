@@ -81,7 +81,7 @@ export class CropListComponent implements OnInit {
     const deletepop = this.service.deleteCrop(id)
           .subscribe({
             next:(res)=>{
-              alertifyjs.success('Worker referee deleted')
+              alertifyjs.success('Crop deleted')
             },
             error:()=>{
               alertifyjs.error('Failed. Please Try Again');
