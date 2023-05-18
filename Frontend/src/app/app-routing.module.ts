@@ -15,6 +15,10 @@ import { FarmAssigmentComponent } from './user/farm-assigment/farm-assigment.com
 import { WorkerAssigmentComponent } from './user/worker-assigment/worker-assigment.component';
 import { WorkerRefereeListComponent } from './user/workerReferee/worker-referee-list/worker-referee-list.component';
 import { RefereesComponent } from './user/workerReferee/referees/referees.component';
+import { FarmCropListComponent } from './user/crop/farm-crop-list/farm-crop-list.component';
+import { CropListComponent } from './user/crop/crop-list/crop-list.component';
+import { ProductComponent } from './user/product/product.component';
+import { ProductListComponent } from './user/product/product-list/product-list.component';
 
 const routes: Routes = [
   {
@@ -30,6 +34,10 @@ const routes: Routes = [
       { path: 'referee', component: RefereesComponent, canActivate: [AuthGuard]},
       {path: 'workerReferee', component:WorkerRefereeListComponent,canActivate: [AuthGuard]},
       {path: 'equipment', component:EquipmentComponent,canActivate: [AuthGuard]},
+      {path: 'crop', component:FarmCropListComponent,canActivate: [AuthGuard]},
+      { path: 'crop-list', component: CropListComponent, canActivate: [AuthGuard] },
+      { path: 'product', component: ProductComponent, canActivate: [AuthGuard]},
+      { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard]},
     ]
   },
     { path:'register', component: RegisterComponent },

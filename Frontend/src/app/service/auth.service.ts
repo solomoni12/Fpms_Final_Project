@@ -153,7 +153,7 @@ export class AuthService {
   deleteAssigment(id:any){
     return this.http.delete(`http://127.0.0.1:8000/api/assignments/${id}`, { headers: this.headers });
   }
-// http://127.0.0.1:8000/api/assignments/2
+
   assignTaskToWorker(assign:Assignment, workerId:number, farmId:number){
     const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
     return this.http.post(url, assign, { headers: this.headers } )
@@ -183,6 +183,24 @@ export class AuthService {
   
   getEquipment():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/equipments/', {headers: this.headers});
+  }
+
+  // Crop API http://127.0.0.1:8000/api/farms/1/crops
+  getCrop(farmId:number): Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/crops`, { headers: this.headers });
+  }
+  deleteCrop(id:any){
+    return this.http.delete(`http://127.0.0.1:8000/api/crops/${id}`, { headers: this.headers });
+  }
+// end crop api
+
+// start Product Api http://127.0.0.1:8000/api/farms/2/products
+  getProduct(farmId:number): Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/products`, { headers: this.headers });
+  }
+  
+  deleteProduct(id:any){
+    return this.http.delete(`http://127.0.0.1:8000/api/products/${id}`, { headers: this.headers });
   }
 
 }

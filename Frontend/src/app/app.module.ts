@@ -45,6 +45,15 @@ import { AddassigmentComponent } from './user/worker-assigment/addassigment/adda
 import { UpdateassigmentComponent } from './user/worker-assigment/updateassigment/updateassigment.component';
 import { DeleteassigmentComponent } from './user/worker-assigment/deleteassigment/deleteassigment.component';
 import { EquipmentlistComponent } from './user/equipment/equipmentlist/equipmentlist.component';
+import { CropComponent } from './user/crop/crop.component';
+import { FarmCropListComponent } from './user/crop/farm-crop-list/farm-crop-list.component';
+import { AddCropComponent } from './user/crop/add-crop/add-crop.component';
+import { UpdateCropComponent } from './user/crop/update-crop/update-crop.component';
+import { CropListComponent } from './user/crop/crop-list/crop-list.component';
+import { ProductComponent } from './user/product/product.component';
+import { ProductListComponent } from './user/product/product-list/product-list.component';
+import { AddProductComponent } from './user/product/add-product/add-product.component';
+import { UpdateProductComponent } from './user/product/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +88,15 @@ import { EquipmentlistComponent } from './user/equipment/equipmentlist/equipment
     UpdateassigmentComponent,
     DeleteassigmentComponent,
     EquipmentlistComponent,
+    CropComponent,
+    FarmCropListComponent,
+    AddCropComponent,
+    UpdateCropComponent,
+    CropListComponent,
+    ProductComponent,
+    ProductListComponent,
+    AddProductComponent,
+    UpdateProductComponent,
   ],
   imports: [
     BrowserModule,
