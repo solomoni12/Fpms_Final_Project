@@ -194,9 +194,13 @@ export class AuthService {
   }
 // end crop api
 
-// start Product Api http://127.0.0.1:8000/api/farms/2/products
+// start Product Api http://127.0.0.1:8000/api/crops/8
   getProduct(farmId:number): Observable<any>{
     return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/products`, { headers: this.headers });
+  }
+
+  UpdateProduct(data:any, id: number){
+    return this.http.put(`http://127.0.0.1:8000/api/crops/${id}`, data, { headers: this.headers });
   }
   
   deleteProduct(id:any){

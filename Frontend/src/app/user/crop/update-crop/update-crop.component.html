@@ -1,1 +1,29 @@
-<p>update-crop works!</p>
+<div class="content">
+    <mat-card>
+        <mat-card-header>Crop Update</mat-card-header>
+        <mat-card-content>
+            <form class="example-form" [formGroup]="updateForm" (ngSubmit)="Updatefarm()">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Crop Name</mat-label> 
+                  <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Planting Date</mat-label> 
+                    <input matInput formControlName="plantingDate">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Harvest Date</mat-label> 
+                    <input matInput formControlName="harvest_date">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Expected Product</mat-label> 
+                    <input matInput formControlName="expected_product">
+                </mat-form-field>
+                <div >
+                    <button class="example-button-row" mat-raised-button color="primary">update</button>
+                    <a mat-dialog-close mat-raised-button color="accent">Concel</a>
+                </div>
+            </form>
+        </mat-card-content>
+      </mat-card>
+</div>
