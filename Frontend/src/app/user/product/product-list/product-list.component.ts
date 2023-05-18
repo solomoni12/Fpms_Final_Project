@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ){
-    this.LoadWorker();
+    this.LoadFarm();
    }
 
   refereelist: any;
@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  LoadWorker() {
+  LoadFarm() {
     const farmId = Number(this.route.snapshot.queryParamMap.get('id'));
     this.service.getProduct(farmId).subscribe(res => {
       this.refereelist = res.data;
@@ -55,7 +55,7 @@ export class ProductListComponent implements OnInit {
        width:'50%',
     })
     addpop.afterClosed().subscribe(res=>{
-      this.LoadWorker();
+      this.LoadFarm();
     });
   }
   
@@ -67,7 +67,7 @@ export class ProductListComponent implements OnInit {
       data:element
     })
     popup.afterClosed().subscribe(res=>{
-      this.LoadWorker();
+      this.LoadFarm();
     });
   }
  
@@ -82,7 +82,7 @@ export class ProductListComponent implements OnInit {
             }
           })
       if(deletepop){
-        this.LoadWorker();
+        this.LoadFarm();
       }
     }
 

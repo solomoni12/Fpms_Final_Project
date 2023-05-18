@@ -1,1 +1,47 @@
-<p>add-product works!</p>
+<div class="content">
+    <mat-card>
+        <mat-card-header>Add Product</mat-card-header>
+        <mat-card-content>
+            <form class="example-form" [formGroup]="registerform" (ngSubmit)="proceedregistration()">
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Product Name</mat-label> 
+                    <input matInput formControlName="product_name" placeholder="ex. maize">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Harvest Date</mat-label> 
+                    <input matInput formControlName="harvest_date" placeholder="ex. 2023-02-02 ">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Quantity</mat-label> 
+                    <input matInput formControlName="quantity" placeholder="ex. 3 ">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Status</mat-label> 
+                    <mat-select formControlName="status">
+                        <mat-option value="">Select Status</mat-option>
+                        <mat-option *ngFor="let item of statuslist" [value]="item">
+                            {{ item }}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  
+                <mat-form-field class="example-full-width">
+                    <mat-label>Crop Name</mat-label> 
+                    <input matInput formControlName="crop_name">
+                    <mat-select formControlName="crop_name">
+                        <mat-option value="">Select crop</mat-option>
+                        <mat-option *ngFor="let item of namelist" [value]="item.id">
+                            {{ item.crop_name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div >
+                    <button class="example-button-row" mat-raised-button color="primary">Submit</button>
+                    <a mat-dialog-close mat-raised-button color="accent">Concel</a>
+                </div>
+            </form>
+        </mat-card-content>
+      </mat-card>
+    
+</div>

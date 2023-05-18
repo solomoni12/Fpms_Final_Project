@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as alertifyjs from 'alertifyjs';
 import { AuthService } from 'src/app/service/auth.service';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @Component({
   selector: 'app-product',
@@ -50,29 +51,16 @@ export class ProductComponent implements OnInit {
       this.router.navigate(['/product-list'], { queryParams: { id: farmId } });
     });
   }
-  assignTaskWorker(farmId:number){
-    // const assignWorker = this.dialog.open(AssignTaskWorkerComponent,{
-    //   enterAnimationDuration:'1000ms',
-    //   exitAnimationDuration:'100ms',
-    //   width:'50%',
-    //   data:element
-    // })
-    // assignWorker.afterClosed().subscribe(res=>{
-    //   this.LoadWorker();
-    // });
+  assignTaskWorker(element:any){
+    const assignWorker = this.dialog.open(AddProductComponent,{
+      enterAnimationDuration:'1000ms',
+      exitAnimationDuration:'100ms',
+      width:'50%',
+      data:element
+    })
+    assignWorker.afterClosed().subscribe(res=>{
+      this.Loadfarm();
+    });
   }
-   deleteFarm(id: number){
-    const deletepop = this.service.deleteFarm(id)
-          .subscribe({
-            next:(res)=>{
-              alertifyjs.success('farm deleted')
-            },
-            error:()=>{
-              alertifyjs.error('Failed. Please Try Again');
-            }
-          })
-      if(deletepop){
-        this.Loadfarm();
-      }
-    }
+
 }

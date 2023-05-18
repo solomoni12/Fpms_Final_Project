@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Crop;
 use App\Models\Farm;
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
 use App\Http\Requests\CropRequest;
-use Illuminate\Support\Facades\Response;
 use App\Http\Resources\CropResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class CropController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +26,13 @@ class CropController extends Controller
         return CropResource::collection($crops);
     }
 
+  
+    public function crops(){
+        $crop = Crop::all();
+        return $this->success([
+            'crop'=>$crop
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *

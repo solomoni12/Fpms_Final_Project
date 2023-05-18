@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
+
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +20,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        
     }
+   
 
     /**
      * Show the form for creating a new resource.

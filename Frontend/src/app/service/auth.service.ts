@@ -46,6 +46,7 @@ import { Farm } from '../model/farm/farm.module';
 import { Assignment } from '../model/assigment/assigment.module';
 import { Referee } from '../model/referee/referee.module';
 import { Crop } from '../model/crop/crop.module';
+import { Product } from '../model/product/product.module';
 
 export class User {
   fname!: String;
@@ -205,13 +206,20 @@ export class AuthService {
   getProduct(farmId:number): Observable<any>{
     return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/products`, { headers: this.headers });
   }
-
+  getcrop(): Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:8000/api/crops', { headers: this.headers });
+  }
   UpdateProduct(data:any, id: number){
     return this.http.put(`http://127.0.0.1:8000/api/products/${id}`, data, { headers: this.headers });
   }
   
   deleteProduct(id:any){
     return this.http.delete(`http://127.0.0.1:8000/api/products/${id}`, { headers: this.headers });
+  }
+  // http://127.0.0.1:8000/api/farms/2/crops/11/products
+  registerProduct(product:Product, farmId:number, cropId:number){
+    // const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
+    return this.http.post(`http://127.0.0.1:8000/api/farms/${farmId}/crops/${cropId}/products`, product, { headers: this.headers } )
   }
 
 }

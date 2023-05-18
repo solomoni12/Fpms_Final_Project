@@ -66,5 +66,5 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post('/farms/{farmId}/crops', [CropController::class,'store']);
     Route::post('/farms/{farmId}/crops/{cropId}/products', [ProductController::class, 'store']);
     Route::get('farms/{farmId}/products', [ProductController::class,'getAllProduct']);
-
+    Route::get('/crops', [CropController::class, 'crops']);
 });
