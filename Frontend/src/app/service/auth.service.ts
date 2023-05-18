@@ -207,7 +207,7 @@ export class AuthService {
   }
 
   UpdateProduct(data:any, id: number){
-    return this.http.put(`http://127.0.0.1:8000/api/crops/${id}`, data, { headers: this.headers });
+    return this.http.put(`http://127.0.0.1:8000/api/products/${id}`, data, { headers: this.headers });
   }
   
   deleteProduct(id:any){
