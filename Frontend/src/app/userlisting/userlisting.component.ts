@@ -41,7 +41,7 @@ export class UserlistingComponent implements OnInit {
    const popup = this.dialog.open(UpdatepopupComponent,{
       enterAnimationDuration:'1000ms',
       exitAnimationDuration:'100ms',
-      width:'40%',
+      width:'30%',
       data:{
         usercode:element
       }
