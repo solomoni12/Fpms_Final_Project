@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
+import * as alertifyjs from 'alertifyjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -10,58 +11,52 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class UpdatepopupComponent implements OnInit {
 
-  rolelist:any;
+  updateForm !: FormGroup;
   constructor(
     private formBuilder: UntypedFormBuilder,
     private service: AuthService,
-    @Inject(MAT_DIALOG_DATA) public data:any,
+    @Inject(MAT_DIALOG_DATA) public editData:any,
     private dialog: MatDialogRef<UpdatepopupComponent>
     ) { }
-
-  registerform=this.formBuilder.group({
-    id:this.formBuilder.control(''),
-    fname:this.formBuilder.control(''),
-    lname:this.formBuilder.control(''),
-    phone_number:this.formBuilder.control(''),
-    physical_address:this.formBuilder.control(''),
-    password:this.formBuilder.control(''),
-    email:this.formBuilder.control(''),
-    sex:this.formBuilder.control('male'),
-    role:this.formBuilder.control('', Validators.required),
-    isactive:this.formBuilder.control('false')
-  })
-
-  updateuser(){
-    if(this.registerform.valid){
-      this.service
-        
-    }else{}
-  }
-
-  editdata:any;
-
   ngOnInit(): void {
-    this.service.profileUser().subscribe(res=>{
-      this.rolelist = res;
-      console.log(this.rolelist);
-    })
-    if(this.data.usercode != null && this.data.usercode != ''){
-      this.service.profileUser().subscribe(res=>{
-        this.editdata = res;
-        this.registerform.setValue({
-          id:this.editdata.id,
-          fname:this.editdata.fname,
-          lname:this.editdata.lname,
-          phone_number:this.editdata.phone_number,
-          physical_address:this.editdata.physical_address,
-          email:this.editdata.email,
-          password:this.editdata.password,
-          role:this.editdata.role,
-          sex:this.editdata.gender,
-          isactive:this.editdata.isactive
-        })
+    this.updateForm = this.formBuilder.group({
+      fname:['', Validators.required],
+      lname:['', Validators.required],
+      role:['', Validators.required],
+      sex:['',Validators.required],
+      isactive:['', Validators.required],
+      physical_address:['', Validators.required],
+      phone_number:['', Validators.required],
+      email:['', Validators.required],
       });
-    }
+      console.log(this.editData.usercode);
+      if(this.editData.usercode){
+        this.updateForm.controls['fname'].setValue(this.editData.usercode.fname);
+        this.updateForm.controls['lname'].setValue(this.editData.usercode.lname);
+        this.updateForm.controls['role'].setValue(this.editData.usercode.role);
+        this.updateForm.controls['sex'].setValue(this.editData.usercode.sex);
+        this.updateForm.controls['isactive'].setValue(this.editData.usercode.isactive);
+        this.updateForm.controls['physical_address'].setValue(this.editData.usercode.physical_address);
+        this.updateForm.controls['phone_number'].setValue(this.editData.usercode.phone_number);
+        this.updateForm.controls['email'].setValue(this.editData.usercode.email);
+      }
+      
   }
 
+  UpdateUser(){
+    if(this.updateForm.valid){
+      this.service.UpdateUser(this.updateForm.value, this.editData.usercode.id)
+      .subscribe({
+        next:(res)=>{
+        alertifyjs.success('user updated sucessful');
+        console.log(res);
+        this.updateForm.reset();
+        this.dialog.close('update');
+      }
+    });
+    }else{
+      alertifyjs.error('failed. Please Try again');
+    }
+  
+  }
 }

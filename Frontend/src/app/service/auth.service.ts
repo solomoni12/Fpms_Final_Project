@@ -96,12 +96,15 @@ export class AuthService {
   register(user: User): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/register', user);
   }
-  // Login
+  // Login http://127.0.0.1:8000/api/user/1
   signin(user: User): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/login', user);
   }
   getUser(): Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/user');
+  }
+  UpdateUser(data:any, id: number){
+    return this.http.put(`http://127.0.0.1:8000/api/user/${id}`, data, { headers: this.headers });
   }
 
   // Access user profile

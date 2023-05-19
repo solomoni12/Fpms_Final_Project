@@ -58,6 +58,20 @@ class AuthController extends Controller
             'user'=>$user
         ]);
     }
+    public function updateUser(Request $request, $userId){
+
+        $user = User::findOrFail($userId);
+
+        $user->update($request->all());
+
+        return $this->success([
+            'user' => $user,
+            'message' => 'User details updated successfully'
+        ]);
+    }
+
+
+    
 
      // Function to find logged user
     public function logged_user(){
