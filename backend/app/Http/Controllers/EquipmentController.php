@@ -48,8 +48,8 @@ class EquipmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function findEquipment(StoreEquipmentRequest $request, $inputId){
-        return $inputId;
+    public function store(StoreEquipmentRequest $request, $inputId){
+        
         $request->validated($request->all());
     
         // Get the authenticated user's id

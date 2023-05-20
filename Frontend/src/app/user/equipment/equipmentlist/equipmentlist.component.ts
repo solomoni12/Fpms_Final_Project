@@ -22,20 +22,21 @@ export class EquipmentlistComponent implements OnInit {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !:MatSort;
 
-  LoadInput(){
-    this.service.getInput().subscribe(res=>{
-      this.service.getEquipment().subscribe(result=>{
-        this.equipmentlist = result.data;
-        console.log(this.equipmentlist);
-        this.dataSource = new MatTableDataSource(this.equipmentlist);
-        // console.log(this.dataSource);
-      
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      })
-     
-    })
+  LoadInput() {
+    this.service.getInput().subscribe(res => {
+      this.equipmentlist = res.data.inputs.flatMap((input: any) =>
+        input.equipments.map((equipment: any) => ({
+          name: input.name,
+          quantity: equipment.quantity
+        }))
+      );
+  
+      this.dataSource = new MatTableDataSource(this.equipmentlist);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
+  
   ngOnInit(): void {
   }
 

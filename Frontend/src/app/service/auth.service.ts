@@ -183,7 +183,7 @@ export class AuthService {
 
   // Input Service start
   getInput(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/inputs', { headers: this.headers });
+    return this.http.get<any>('http://127.0.0.1:8000/api/inputs-with-equipment', { headers: this.headers });
   }
   
   getEquipment():Observable<any>{

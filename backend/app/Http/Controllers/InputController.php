@@ -49,6 +49,17 @@ class InputController extends Controller
 
         return new InputResource($input);
     }
+    
+    // function to get Input with their equipment 
+    public function getInputsWithEquipment(){
+        
+        $inputs = Input::with('equipments')->get();
+
+        return $this->success([
+            'inputs' => $inputs
+        ]);
+    }
+
 
     /**
      * Display the specified resource.

@@ -68,4 +68,5 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get('farms/{farmId}/products', [ProductController::class,'getAllProduct']);
     Route::get('/crops', [CropController::class, 'crops']);
     Route::put('/user/{userId}', [AuthController::class, 'updateUser'])->name('user.update');
+    Route::get('/inputs-with-equipment', [InputController::class, 'getInputsWithEquipment'])->name('inputs.withEquipment');
 });
