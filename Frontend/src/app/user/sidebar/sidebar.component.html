@@ -16,39 +16,39 @@
                 <mat-icon>home</mat-icon>
                 <span>Home</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/farm']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/farm']">
                 <mat-icon>dashboard</mat-icon>
                 <span>Farm</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/worker']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/worker']">
                 <mat-icon>account_circle</mat-icon>
                 <span>Worker</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/workerReferee']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/workerReferee']">
                 <mat-icon>account_circle</mat-icon>
                 <span>Worker Referee</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/assigment']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/assigment']">
                 <mat-icon>account_circle</mat-icon>
                 <span>Farm Assigment</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/equipment']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/equipment']">
                 <mat-icon>view_list</mat-icon>
                 <span>Equipment</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/crop']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/crop']">
                 <mat-icon>view_list</mat-icon>
                 <span>Crop</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/product']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/product']">
                 <mat-icon>view_list</mat-icon>
                 <span>Product</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/user']">
+            <button mat-button class="menu-button" *ngIf="isadminuser" [routerLink]="['/user']">
                 <mat-icon>account_circle</mat-icon>
                 <span >User list</span>
             </button>
-            <button mat-button class="menu-button" [routerLink]="['/setting']">
+            <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/setting']">
                 <mat-icon>settings</mat-icon>
                 <span>Settings</span>
             </button>

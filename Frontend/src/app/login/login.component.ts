@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('userrole', this.userdata.role);
             sessionStorage.setItem('lastname', this.userdata.lname);
             sessionStorage.setItem('email', this.userdata.email);
-            
+            console.log(this.userdata.role);
             alertifyjs.success('login sucessful');
             this.router.navigate(['']);
           }
