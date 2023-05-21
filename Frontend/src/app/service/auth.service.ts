@@ -91,6 +91,15 @@ export class AuthService {
   GetUserrole(){
     return sessionStorage.getItem('userrole') != null?sessionStorage.getItem('userrole'):'';
   }
+  GetUserEmail(){
+    return sessionStorage.getItem('email') != null?sessionStorage.getItem('email'):'';
+  }
+  GetUserFirstName(){
+    return sessionStorage.getItem('firstname') != null?sessionStorage.getItem('firstname'):'';
+  }
+  GetUsrLastName(){
+    return sessionStorage.getItem('lastname') != null?sessionStorage.getItem('lastname'):'';
+  }
  
   // User registration
   register(user: User): Observable<any> {

@@ -39,9 +39,10 @@ export class LoginComponent implements OnInit {
             // console.log(this.token);
             sessionStorage.setItem('token', this.token);
             sessionStorage.setItem('userrole', this.userdata.role);
+            sessionStorage.setItem('firstname', this.userdata.fname);
             sessionStorage.setItem('lastname', this.userdata.lname);
             sessionStorage.setItem('email', this.userdata.email);
-            console.log(this.userdata.role);
+
             alertifyjs.success('login sucessful');
             this.router.navigate(['']);
           }

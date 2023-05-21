@@ -18,8 +18,10 @@ import { SidebarComponent } from './user/sidebar/sidebar.component';
 import { HomComponent } from './user/hom/hom.component';
 import { TokenInterceptor } from './service/token.intrceptor';
 // material
+import {MatSelectModule} from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { SettingComponent } from './user/dashboard/setting/setting.component';
@@ -110,12 +112,13 @@ import { UpdateProductComponent } from './user/product/update-product/update-pro
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatSelectModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      // useClass: AuthInterceptor,
       useClass:TokenInterceptor,
       multi: true
     }
