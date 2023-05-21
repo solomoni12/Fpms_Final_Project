@@ -22,9 +22,6 @@ mat-icon{
     font-weight: 800;
     margin-bottom: 50px;
 }
-/* rounded-image{
-    border-radius: 50%;
-} */
 img{
     margin-top: -30px;
     margin-left: -50px;
@@ -40,7 +37,7 @@ img{
     color: #8997ac;
 }
 .menu-head{
-    color: #466be0;
+    color: white;
     text-transform: uppercase;
     font-weight: 900;
     margin-left: 40px;
