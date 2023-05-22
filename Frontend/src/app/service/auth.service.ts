@@ -47,6 +47,8 @@ import { Assignment } from '../model/assigment/assigment.module';
 import { Referee } from '../model/referee/referee.module';
 import { Crop } from '../model/crop/crop.module';
 import { Product } from '../model/product/product.module';
+import { Equipment } from '../model/equipment/equipment.module';
+
 
 export class User {
   fname!: String;
@@ -191,10 +193,20 @@ export class AuthService {
   }
 
   // Input Service start
+  registerInput(equipment:Equipment): Observable<any> {
+    
+    return this.http.post('http://127.0.0.1:8000/api/inputs', equipment);
+  }
+  
   getInput(): Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/inputs-with-equipment', { headers: this.headers });
   }
-  
+  UpdateInput(data:any, id: number){
+    return this.http.put(`http://127.0.0.1:8000/api/inputs-with-equipment/${id}`, data, { headers: this.headers });
+  }
+  deleteInput(id:any){
+    return this.http.delete(`http://127.0.0.1:8000/api/inputs/6/${id}`, { headers: this.headers });
+  }
   getEquipment():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/equipments/', {headers: this.headers});
   }

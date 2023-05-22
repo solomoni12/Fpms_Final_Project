@@ -56,6 +56,8 @@ import { ProductComponent } from './user/product/product.component';
 import { ProductListComponent } from './user/product/product-list/product-list.component';
 import { AddProductComponent } from './user/product/add-product/add-product.component';
 import { UpdateProductComponent } from './user/product/update-product/update-product.component';
+import { UpdateEquipmentComponent } from './user/equipment/update-equipment/update-equipment.component';
+import { AddEquipmentComponent } from './user/equipment/add-equipment/add-equipment.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { UpdateProductComponent } from './user/product/update-product/update-pro
     ProductListComponent,
     AddProductComponent,
     UpdateProductComponent,
+    UpdateEquipmentComponent,
+    AddEquipmentComponent,
   ],
   imports: [
     BrowserModule,
