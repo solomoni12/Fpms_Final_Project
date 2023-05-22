@@ -48,6 +48,7 @@ import { Referee } from '../model/referee/referee.module';
 import { Crop } from '../model/crop/crop.module';
 import { Product } from '../model/product/product.module';
 import { Equipment } from '../model/equipment/equipment.module';
+import { ChangePassword } from '../model/change-password/change-password.module';
 
 
 export class User {
@@ -103,13 +104,21 @@ export class AuthService {
     return sessionStorage.getItem('lastname') != null?sessionStorage.getItem('lastname'):'';
   }
  
-  // User registration
+  // User registration 
   register(user: User): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/register', user);
   }
-  // Login http://127.0.0.1:8000/api/user/1
+  // Login  
   signin(user: User): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/login', user);
+  }
+  // logged user
+  loggedUser(): Observable<any> {
+    return this.http.get<any>('http://127.0.0.1:8000/api/logged');
+  }
+  // ChangePassword
+  changepassword(changepassword: ChangePassword): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/changepassword', changepassword, { headers: this.headers });
   }
   getUser(): Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/user');

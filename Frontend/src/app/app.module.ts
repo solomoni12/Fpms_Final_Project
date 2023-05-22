@@ -58,6 +58,8 @@ import { AddProductComponent } from './user/product/add-product/add-product.comp
 import { UpdateProductComponent } from './user/product/update-product/update-product.component';
 import { UpdateEquipmentComponent } from './user/equipment/update-equipment/update-equipment.component';
 import { AddEquipmentComponent } from './user/equipment/add-equipment/add-equipment.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +105,8 @@ import { AddEquipmentComponent } from './user/equipment/add-equipment/add-equipm
     UpdateProductComponent,
     UpdateEquipmentComponent,
     AddEquipmentComponent,
+    ChangePasswordComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

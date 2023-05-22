@@ -15,11 +15,13 @@ export class AddEquipmentComponent implements OnInit {
   statuslist = ['sold','processed','in stock'];
   namelist:any;
 
-  constructor(private formBuilder: UntypedFormBuilder,
+  constructor(
+     private formBuilder: UntypedFormBuilder,
      private service: AuthService, 
      private router: Router,
      @Inject(MAT_DIALOG_DATA) public data:any,
-     private dialog: MatDialogRef<AddEquipmentComponent>) {
+     private dialog: MatDialogRef<AddEquipmentComponent>
+  ){
     this.registerform = this.formBuilder.group({
       name: ['', Validators.required],
       equipment_quantity: ['', Validators.required]
@@ -34,7 +36,7 @@ export class AddEquipmentComponent implements OnInit {
     ngOnInit(): void {
 
     }
-
+ 
   proceedregistration(){
     console.log(this.registerform.value);
     if(this.registerform.valid){

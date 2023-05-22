@@ -19,6 +19,8 @@ import { FarmCropListComponent } from './user/crop/farm-crop-list/farm-crop-list
 import { CropListComponent } from './user/crop/crop-list/crop-list.component';
 import { ProductComponent } from './user/product/product.component';
 import { ProductListComponent } from './user/product/product-list/product-list.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,8 @@ const routes: Routes = [
       { path: 'crop-list', component: CropListComponent, canActivate: [AuthGuard] },
       { path: 'product', component: ProductComponent, canActivate: [AuthGuard]},
       { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard]},
+      { path: 'change-change', component: ChangePasswordComponent, canActivate: [AuthGuard]},
+      { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]}
     ]
   },
     { path:'register', component: RegisterComponent },

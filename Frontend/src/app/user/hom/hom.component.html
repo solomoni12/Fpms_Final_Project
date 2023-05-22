@@ -11,8 +11,8 @@
             <mat-form-field>
               <mat-label>{{ useremail }}</mat-label>
               <mat-select disableRipple>
-                <mat-option routerLink="/dashboard" (click)="setting()">My Profile</mat-option>
-                <mat-option routerLink="/dashboard" (click)="setting()">Change password</mat-option>
+                <mat-option routerLink="/profile" (click)="setting()">My Profile</mat-option>
+                <mat-option routerLink="/change-change" (click)="setting()">Change password</mat-option>
                 <mat-option routerLink="/setting" (click)="setting()">Settings</mat-option>
                 <mat-option routerLink="/login" (click)="logout()">Logout</mat-option>
               </mat-select>
@@ -20,7 +20,8 @@
           </mat-toolbar>
         </div>
         <div class="main">
-          <h3>Logged as {{ userfirstname }} {{ userlastname }}</h3>
+          <!-- Logged as -->
+          <h3 style="text-align: center;">Welcome Back, {{ userfirstname }} {{ userlastname }}</h3>
           <router-outlet></router-outlet>
         </div>
       </div>
