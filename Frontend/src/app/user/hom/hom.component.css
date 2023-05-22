@@ -29,3 +29,6 @@ a:visited,
     margin-right: 10px;
 }
 
+.custom-label {
+    font-size: 15px; /* Adjust the font size as desired */
+  }

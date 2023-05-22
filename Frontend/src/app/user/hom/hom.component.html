@@ -8,8 +8,8 @@
           <mat-toolbar>
             <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
             <div class="spacer"></div>
-            <mat-form-field>
-              <mat-label>{{ useremail }}</mat-label>
+            <mat-form-field class="custom-label" appearance="legacy">
+              <mat-label >{{ useremail }}</mat-label>
               <mat-select disableRipple>
                 <mat-option routerLink="/profile" (click)="setting()">My Profile</mat-option>
                 <mat-option routerLink="/change-change" (click)="setting()">Change password</mat-option>
@@ -17,6 +17,7 @@
                 <mat-option routerLink="/login" (click)="logout()">Logout</mat-option>
               </mat-select>
             </mat-form-field>
+            
           </mat-toolbar>
         </div>
         <div class="main">
