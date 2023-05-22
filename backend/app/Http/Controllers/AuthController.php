@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\ChangePasswordRequest;
 
 class AuthController extends Controller
 {
@@ -82,26 +83,24 @@ class AuthController extends Controller
             'message' => 'logged user'
         ]);
     }
-
+    
      // Function to change password of user
-    public function change_password(LoginUserRequest $request){
-
-        $request -> validated([
-            'email' => 'required',
-            'password'=> 'required|confirmed',
+    public function change_password(ChangePasswordRequest $request){
+        
+        $request->validated([
+            'password' => 'required|confirmed',
         ]);
-        $logged_user = auth()->user(); 
-        $logged_user -> password = Hash::make($request->password);
-        $logged_user -> save();
 
-        return $this->success([
-            'user' => $logged_user,
-            'message' => 'password changed'
+        $user = auth()->user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json([
+            'user' => $user,
+            'message' => 'Password changed successfully',
         ]);
     }
-        
-
-
+   
     // user logout function
     public function logout(){
         
