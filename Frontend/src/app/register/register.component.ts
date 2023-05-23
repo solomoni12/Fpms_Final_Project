@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import * as alertifyjs from 'alertifyjs';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,33 @@ export class RegisterComponent implements OnInit {
       role:this.formBuilder.control(0),
       isactive:this.formBuilder.control(0),
     })
-
+    proceedregistration() {
+      console.log(this.registerform.value);
+      if (this.registerform.valid) {
+        const password = this.registerform.get('password')?.value;
+        const confirmPassword = this.registerform.get('password_confirmation')?.value;
+  
+        if (password === confirmPassword) {
+          this.service.register(this.registerform.value)
+            .subscribe(
+              res => {
+                console.log(res);
+                alertifyjs.success('User registered successfully');
+                this.registerform.reset();
+                this.router.navigate(['/']); // Navigate to home page
+              },
+              error => {
+                alertifyjs.error('Failed. Please try again');
+              }
+            );
+        } else {
+          alertifyjs.error('Password and Confirm Password do not match');
+        }
+      } else {
+        // Handle form validation errors if needed
+      }
+    }
+/*
     proceedregistration(){
       console.log(this.registerform.value);
       if(this.registerform.valid){
@@ -40,6 +67,8 @@ export class RegisterComponent implements OnInit {
 
       }
     }
+
+*/
 
   ngOnInit(): void {
   }

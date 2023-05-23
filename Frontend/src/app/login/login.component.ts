@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   }
 
   userdata: any;
-  token:any;
+  token: any;
+  errorMessage: string = ''; // Variable to hold the error message
 
   loginform = this.formBuilder.group({
     email: this.formBuilder.control('', Validators.compose([Validators.required, Validators.email])),
@@ -27,36 +28,35 @@ export class LoginComponent implements OnInit {
   });
 
   proceedlogin() {
-    if (this.loginform.valid){
+    if (this.loginform.valid) {
       this.service.signin(this.loginform.value).subscribe(
-        (result)=>{
+        (result) => {
           this.userdata = result.data.user;
-          
-          if(this.userdata.isactive == 1){
+
+          if (this.userdata.isactive == 1) {
             this.token = result.data.token;
             localStorage.setItem('token', this.token);
-            
-            // console.log(this.token);
+
             sessionStorage.setItem('token', this.token);
             sessionStorage.setItem('userrole', this.userdata.role);
             sessionStorage.setItem('firstname', this.userdata.fname);
             sessionStorage.setItem('lastname', this.userdata.lname);
             sessionStorage.setItem('email', this.userdata.email);
 
-            alertifyjs.success('login sucessful');
+            alertifyjs.success('Login successful');
             this.router.navigate(['']);
-          }
-          else{
-
-            alertifyjs.error('You are not active contact admin via mwalupani@gmail.com');
+          } else {
+            alertifyjs.error('You are not active. Please contact admin via mwalupani@gmail.com');
             this.loginform.reset();
           }
-        });
-    }else{
-      // console.log(this.userdata);
-      alertifyjs.error('Invalid username or password. Please Try again!');
+        },
+        (error) => {
+          alertifyjs.error('Invalid username or password. Please try again!');
+        }
+      );
+    } else {
+      alertifyjs.error('Invalid username or password. Please try again!');
     }
-    
   }
 
   ngOnInit(): void {}
