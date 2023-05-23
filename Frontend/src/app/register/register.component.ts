@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
                 console.log(res);
                 alertifyjs.success('User registered successfully');
                 this.registerform.reset();
-                this.router.navigate(['/']); // Navigate to home page
+                this.router.navigate(['/']); 
               },
               error => {
                 alertifyjs.error('Failed. Please try again');
@@ -51,24 +51,9 @@ export class RegisterComponent implements OnInit {
           alertifyjs.error('Password and Confirm Password do not match');
         }
       } else {
-        // Handle form validation errors if needed
+        alertifyjs.error('Invalid data');
       }
     }
-/*
-    proceedregistration(){
-      console.log(this.registerform.value);
-      if(this.registerform.valid){
-        this.service.register(this.registerform.value)
-          .subscribe(res=>{
-            console.log(res);
-            this.router.navigate(['login']);
-          });
-      }else{
-
-      }
-    }
-
-*/
 
   ngOnInit(): void {
   }
