@@ -214,7 +214,7 @@ export class AuthService {
     return this.http.put(`http://127.0.0.1:8000/api/inputs-with-equipment/${id}`, data, { headers: this.headers });
   }
   deleteInput(id:any){
-    return this.http.delete(`http://127.0.0.1:8000/api/inputs/6/${id}`, { headers: this.headers });
+    return this.http.delete(`http://127.0.0.1:8000/api/inputs/${id}`, { headers: this.headers });
   }
   getEquipment():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/equipments/', {headers: this.headers});

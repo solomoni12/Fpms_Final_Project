@@ -22,14 +22,14 @@ export class UpdateEquipmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      quantity: ['', Validators.required],
+      input_name: ['', Validators.required],
+      equipment_quantity: ['', Validators.required],
     });
 
     if (this.editData) {
       this.updateForm.patchValue({
-        name: this.editData.name,
-        quantity: this.editData.quantity
+        input_name: this.editData.name,
+        equipment_quantity: this.editData.quantity
       });
     }
   }
@@ -37,11 +37,11 @@ export class UpdateEquipmentComponent implements OnInit {
   Updateinput() {
     if (this.updateForm.valid) {
       const updatedData = {
-        name: this.updateForm.value.name,
-        quantity: this.updateForm.value.quantity
+        input_name: this.updateForm.value.input_name,
+        equipment_quantity: this.updateForm.value.equipment_quantity
       };
-
-      this.service.UpdateInput(updatedData, this.editData.id)
+  
+      this.service.UpdateInput(updatedData, this.editData.id) // Pass input ID instead of equipment ID
         .subscribe({
           next: (res) => {
             alertifyjs.success('Equipment detail updated successfully');
@@ -58,6 +58,6 @@ export class UpdateEquipmentComponent implements OnInit {
       alertifyjs.error('Invalid form data. Please fill in all the required fields.');
     }
   }
-
+  
 }
 
