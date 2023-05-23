@@ -42,28 +42,53 @@ class InputController extends Controller
 
     //  function to store input
     
-    public function store(StoreInputRequest $request){
-
+    public function store(StoreInputRequest $request)
+    {
         $validatedData = $request->validated();
-
-        // Create a new input
-        $input = Input::create([
-            'name' => $validatedData['name'],
-        ]);
-
-        // Create a new equipment associated with the input
-        $equipment = Equipment::create([
-            'user_id' => Auth::user()->id,
-            'input_id' => $input->id,
-            'quantity' => $validatedData['equipment_quantity'],
-        ]);
-
+    
+        $name = $validatedData['name'];
+    
+        // Check if the name exists in the Input table
+        $input = Input::where('name', $name)->first();
+    
+        if ($input) {
+            // Update the quantity of the associated equipment
+            $equipment = Equipment::where('input_id', $input->id)->first();
+    
+            if ($equipment) {
+                $equipment->quantity += $validatedData['equipment_quantity'];
+                $equipment->save();
+            } else {
+                // Create a new equipment associated with the existing input
+                $equipment = Equipment::create([
+                    'user_id' => Auth::user()->id,
+                    'input_id' => $input->id,
+                    'quantity' => $validatedData['equipment_quantity'],
+                ]);
+            }
+        } else {
+            // Create a new input
+            $input = Input::create([
+                'name' => $name,
+                'quantity' => $validatedData['equipment_quantity'],
+            ]);
+    
+            // Create a new equipment associated with the new input
+            $equipment = Equipment::create([
+                'user_id' => Auth::user()->id,
+                'input_id' => $input->id,
+                'quantity' => $validatedData['equipment_quantity'],
+            ]);
+        }
+    
         // Return the response with the created input and equipment
         return response()->json([
             'input' => $input,
             'equipment' => $equipment,
         ], 201);
     }
+    
+
 
     
     // function to get Input with their equipment 
