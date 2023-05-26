@@ -89,7 +89,6 @@ export class AuthService {
 
   IsloggedIn() {
     return sessionStorage.getItem('email') != null;
-    // return localStorage.getItem('token');
   }
   GetUserrole(){
     return sessionStorage.getItem('userrole') != null?sessionStorage.getItem('userrole'):'';
@@ -102,6 +101,15 @@ export class AuthService {
   }
   GetUsrLastName(){
     return sessionStorage.getItem('lastname') != null?sessionStorage.getItem('lastname'):'';
+  }
+  GetUserSex(){
+    return sessionStorage.getItem('sex') != null?sessionStorage.getItem('sex'):'';
+  }
+  GetUserPhone(){
+    return sessionStorage.getItem('phone_number') != null?sessionStorage.getItem('phone_number'):'';
+  }
+  GetUsrAddress(){
+    return sessionStorage.getItem('physical_address') != null?sessionStorage.getItem('physical_address'):'';
   }
  
   // User registration 
@@ -249,9 +257,8 @@ export class AuthService {
   deleteProduct(id:any){
     return this.http.delete(`http://127.0.0.1:8000/api/products/${id}`, { headers: this.headers });
   }
-  // http://127.0.0.1:8000/api/farms/2/crops/11/products
+  
   registerProduct(product:Product, farmId:number, cropId:number){
-    // const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
     return this.http.post(`http://127.0.0.1:8000/api/farms/${farmId}/crops/${cropId}/products`, product, { headers: this.headers } )
   }
 

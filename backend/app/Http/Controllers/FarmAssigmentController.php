@@ -205,8 +205,10 @@ class FarmAssigmentController extends Controller
             // Get the worker associated with the ID
             $worker = Worker::where('id', $worker_id)->where('user_id', Auth::user()->id)->firstOrFail();
     
-            // Get all farm assignments for the worker
-            $assignments = FarmAssigment::where('worker_id', $worker->id)->get();
+            // Get all farm assignments for the worker with their farm information
+            $assignments = FarmAssigment::where('worker_id', $worker->id)
+                ->with('farm')
+                ->get();
     
             // Return the assignments as a resource collection
             return FarmAssigmentResource::collection($assignments);
@@ -214,6 +216,7 @@ class FarmAssigmentController extends Controller
             return response()->json(['error' => 'Worker not found for the authenticated user'], 404);
         }
     }
+    
     
         // Function to retrive all Farm Assigment For specific Workers
     public function availableAssigmentWorker($worker_id){

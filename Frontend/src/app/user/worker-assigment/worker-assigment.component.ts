@@ -31,18 +31,36 @@ export class WorkerAssigmentComponent implements OnInit {
   LoadAssigment() {
     const workerId = Number(this.route.snapshot.queryParamMap.get('id'));
     this.service.getAssigment(workerId).subscribe(res => {
-      this.assignmentlist = res.data;
+      this.assignmentlist = res.data.map((assignment: any) => {
+        return {
+          ...assignment,
+          farm_name: assignment.farm.attributes.name // Add the farm name to each assignment object
+        };
+      });
       console.log(this.assignmentlist);
       this.dataSource = new MatTableDataSource(this.assignmentlist);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
+  
+  
+  // LoadAssigment() {
+  //   const workerId = Number(this.route.snapshot.queryParamMap.get('id'));
+  //   this.service.getAssigment(workerId).subscribe(res => {
+  //     this.assignmentlist = res.data;
+  //     console.log(this.assignmentlist);
+  //     this.dataSource = new MatTableDataSource(this.assignmentlist);
+  //     this.dataSource.paginator = this.paginator;
+  //     this.dataSource.sort = this.sort;
+  //   });
+  // }
 
   ngOnInit(): void {
   }
 
-  displayedColumns: string[] = ['task_name', 'time_assigned', 'time_start', 'time_complished','status', 'action'];
+  displayedColumns: string[] = ['task_name', 'farm_name', 'time_assigned', 'time_start', 'time_complished','status', 'action'];
+
 
   updateAssigment(element:any){
     const popup = this.dialog.open(UpdateassigmentComponent,{

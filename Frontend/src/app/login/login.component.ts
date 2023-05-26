@@ -42,7 +42,10 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('firstname', this.userdata.fname);
             sessionStorage.setItem('lastname', this.userdata.lname);
             sessionStorage.setItem('email', this.userdata.email);
-
+            sessionStorage.setItem('sex', this.userdata.sex);
+            sessionStorage.setItem('phone_number', this.userdata.phone_number);
+            sessionStorage.setItem('physical_address', this.userdata.physical_address);
+            
             alertifyjs.success('Login successful');
             this.router.navigate(['']);
           } else {
