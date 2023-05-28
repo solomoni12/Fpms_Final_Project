@@ -26,7 +26,7 @@ class StoreFarmRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'location' => ['required'],
-            'land_title' => ['required', 'min:8', 'max:10'],
+            'land_title' => ['required', 'min:6'],
             'size' => ['required']
         ];
     }

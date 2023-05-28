@@ -40,10 +40,12 @@ export class AddfarmComponent implements OnInit {
           alertifyjs.success('added sucessful');
           this.registerform.reset();
           this.dialog.close('update');
-        })
-        error:()=>{
+        },
+        error=>{
+          console.log(error);
           alertifyjs.error('Failed. Please Try Again');
-        }
+        })
+        
     }
   }
 }
