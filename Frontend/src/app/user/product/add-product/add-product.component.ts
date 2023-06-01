@@ -40,13 +40,15 @@ export class AddProductComponent implements OnInit {
     console.log(this.registerform.value);
     if(this.registerform.valid){
       this.service.registerProduct(this.registerform.value, this.data.id, this.registerform.value.crop_name)
-        .subscribe(res=>{
+        .subscribe({ next:res=>{
           console.log(res);
           alertifyjs.success('Product added sucessful');
           this.registerform.reset();
           this.dialog.close('update');
-        })
-        // alertifyjs.error('Failed. Please Try Again');
+        }, 
+        error:()=>{
+          alertifyjs.error('Failed. Please Try Again');
+        }}) 
     }
     else{
       

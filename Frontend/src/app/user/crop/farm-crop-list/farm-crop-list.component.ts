@@ -50,17 +50,7 @@ export class FarmCropListComponent implements OnInit {
       this.router.navigate(['/crop-list'], { queryParams: { id: farmId } });
     });
   }
-  assignTaskWorker(farmId:number){
-    // const assignWorker = this.dialog.open(AssignTaskWorkerComponent,{
-    //   enterAnimationDuration:'1000ms',
-    //   exitAnimationDuration:'100ms',
-    //   width:'50%',
-    //   data:element
-    // })
-    // assignWorker.afterClosed().subscribe(res=>{
-    //   this.LoadWorker();
-    // });
-  }
+  
    deleteFarm(id: number){
     const deletepop = this.service.deleteFarm(id)
           .subscribe({

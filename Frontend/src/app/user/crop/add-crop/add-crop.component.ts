@@ -35,12 +35,16 @@ export class AddCropComponent implements OnInit {
     console.log(farmId);
     if(this.registerform.valid){
       this.service.registerCrop(this.registerform.value, farmId)
-        .subscribe(res=>{
+        .subscribe({ next: res=>{
           console.log(res);
           alertifyjs.success('crop added sucessful!');
           this.registerform.reset();
           this.dialog.close('update');
-        })
+        },
+        error:()=>{
+          alertifyjs.error('Failed. Please Try Again');
+        }
+      })
         // alertifyjs.error('Failed. Please Try Again');
     }
     else{

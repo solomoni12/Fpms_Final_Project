@@ -21,4 +21,12 @@ class Crop extends Model
     public function farms(){
         return $this->belongsTo(Farm::class);
     }
+
+    public function farm()
+{
+    return $this->belongsTo(Farm::class);
+}
+
+
+
 }

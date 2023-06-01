@@ -51,7 +51,7 @@ export class ProductComponent implements OnInit {
       this.router.navigate(['/product-list'], { queryParams: { id: farmId } });
     });
   }
-  assignTaskWorker(element:any){
+  addProduct(element:any){
     const assignWorker = this.dialog.open(AddProductComponent,{
       enterAnimationDuration:'1000ms',
       exitAnimationDuration:'100ms',

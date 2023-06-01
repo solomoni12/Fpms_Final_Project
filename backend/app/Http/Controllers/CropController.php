@@ -20,19 +20,29 @@ class CropController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index($farmId){
+     public function index()
+     {
+         $user = Auth::user();
+         $crops = Crop::whereHas('farm', function ($query) use ($user) {
+             $query->where('user_id', $user->id);
+         })->get();
+     
+         return CropResource::collection($crops);
+     }
+     
 
-        $crops = Crop::where('farm_id', $farmId)->get();
-        return CropResource::collection($crops);
-    }
 
   
-    public function crops(){
-        $crop = Crop::all();
-        return $this->success([
-            'crop'=>$crop
-        ]);
-    }
+     public function crops()
+     {
+         $user = Auth::user();
+         $crops = $user->crops()->get();
+     
+         return $this->success([
+             'crop' => $crops
+         ]);
+     }
+     
     /**
      * Show the form for creating a new resource.
      *
