@@ -135,6 +135,11 @@ export class AuthService {
     return this.http.put(`http://127.0.0.1:8000/api/user/${id}`, data, { headers: this.headers });
   }
 
+  // http://127.0.0.1:8000/api/logout
+  logout(): Observable<any>{
+    return this.http.post(`http://127.0.0.1:8000/api/logout`,{ headers: this.headers })
+  }
+
   // Access user profile
   profileUser(): Observable<any> {
     return this.http.get(this.apiurl);

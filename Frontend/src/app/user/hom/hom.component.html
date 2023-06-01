@@ -13,8 +13,8 @@
               <mat-select disableRipple>
                 <mat-option routerLink="/profile" >Profile</mat-option>
                 <mat-option routerLink="/change-change" >Change password</mat-option>
-                <!-- <mat-option routerLink="/setting" (click)="setting()">Settings</mat-option> -->
-                <mat-option routerLink="/login" >Logout</mat-option>
+                <!-- routerLink="/login" <mat-option routerLink="/setting" (click)="setting()">Settings</mat-option> -->
+                <mat-option (click)="logout()">Logout</mat-option>
               </mat-select>
             </mat-form-field>
           </mat-toolbar>
