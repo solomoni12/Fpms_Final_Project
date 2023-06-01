@@ -2,8 +2,13 @@
     <div class="demo-button-container">
       <a routerLink="/assigment" class="demo-button" mat-fab color="accent">
         <mat-icon>fast_rewind</mat-icon></a>
+        <a class="demo-button" mat-fab color="primary" (click)="printPDF()">
+          <mat-icon>print</mat-icon>
+        </a>
     </div>
-    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" #table>
 
       <!-- Name Column -->
       <ng-container matColumnDef="task_name">
@@ -50,6 +55,8 @@
                 <mat-icon>create</mat-icon></a>
             <a class="demo-button"  (click)="deleteAssigment(element.id)" mat-fab color="accent">
                 <mat-icon>delete</mat-icon></a>  
+                <div class="demo-button-container">
+                </div>
         </td>
       </ng-container>  
   
