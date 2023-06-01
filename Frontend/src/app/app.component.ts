@@ -27,15 +27,12 @@ export class AppComponent implements DoCheck{
     if(this.service.GetUserrole() === '1'){
       this.isadminuser = true;
     }else{
-      // this.router.navigate(['/dashboard']);
       this.isadminuser = false;
-      // this.router.navigate(['/dashboard']);
 
     }
   }
 
   logout(){
     localStorage.removeItem('token');
-    // this.router.navigate(['loogin']);
   }
 }
