@@ -48,6 +48,43 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function store(ProductRequest $request, $farmId, $cropId)
+{
+    try {
+        $request->validated();
+
+        $user = Auth::user();
+        $crop = $user->crops()->findOrFail($cropId);
+        $farm = $user->farm()->findOrFail($farmId);
+
+        $product = Product::where('crop_id', $cropId)
+            ->where('farm_id', $farmId)
+            ->first();
+
+        if ($product) {
+            // Update the quantity by adding the provided quantity
+            $product->quantity += $request->quantity;
+            $product->harvest_date = $request->harvest_date;
+            $product->save();
+        } else {
+            // Create a new product record
+            $product = Product::create([
+                'crop_id' => $cropId,
+                'farm_id' => $farmId,
+                'product_name' => $request->product_name,
+                'harvest_date' => $request->harvest_date,
+                'quantity' => $request->quantity,
+                'status' => $request->status,
+            ]);
+        }
+
+        return new ProductResource($product);
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        return response()->json(['error' => 'Crop or farm not found'], 404);
+    }
+}
+
+     /*
      public function store(ProductRequest $request, $farmId, $cropId){
         
          try {
@@ -68,7 +105,7 @@ class ProductController extends Controller
          } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
              return response()->json(['error' => 'crop or farm not found'], 404);
          }
-     }
+     }*/
 
     /**
      * Display the specified resource.

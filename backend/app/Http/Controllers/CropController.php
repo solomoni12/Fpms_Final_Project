@@ -30,9 +30,6 @@ class CropController extends Controller
          return CropResource::collection($crops);
      }
      
-
-
-  
      public function crops()
      {
          $user = Auth::user();
