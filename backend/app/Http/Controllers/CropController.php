@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Crop;
 use App\Models\Farm;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Requests\CropRequest;
@@ -20,15 +21,21 @@ class CropController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index()
-     {
-         $user = Auth::user();
-         $crops = Crop::whereHas('farm', function ($query) use ($user) {
-             $query->where('user_id', $user->id);
-         })->get();
+     public function index($farmId){
+
+        $crops = Crop::where('farm_id', $farmId)->get();
+        return CropResource::collection($crops);
+    }
+    
+    //  public function index()
+    //  {
+    //      $user = Auth::user();
+    //      $crops = Crop::whereHas('farm', function ($query) use ($user) {
+    //          $query->where('user_id', $user->id);
+    //      })->get();
      
-         return CropResource::collection($crops);
-     }
+    //      return CropResource::collection($crops);
+    //  }
      
      public function crops()
      {
@@ -39,7 +46,11 @@ class CropController extends Controller
              'crop' => $crops
          ]);
      }
-     
+    //  public function crops($farmId){
+
+    //     $crops = Crop::where('farm_id', $farmId)->get();
+    //     return CropResource::collection($crops);
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -56,6 +67,48 @@ class CropController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     public function store(CropRequest $request, $farmId)
+{
+    $request->validated($request->all());
+
+    $farm = Farm::findOrFail($farmId);
+
+    if ($farm->user_id != Auth::id()) {
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    // Check if Farm already has a Crop associated with it
+    $existingCrop = Crop::where('farm_id', $farm->id)->first();
+    
+    if ($existingCrop) {
+        // Check if the Crop and Farm exist in the Product table
+        $product = Product::where('crop_id', $existingCrop->id)
+            ->where('farm_id', $farm->id)
+            ->first();
+
+        if (!$product) {
+            return response()->json(['message' => 'The crop and farm combination does not exist in the product table'], 400);
+        }
+
+        // Check the status from the Product table
+        if ($product->status !== 'sold') {
+            return response()->json(['message' => 'Cannot create a new crop. The product status is not "sold"'], 400);
+        }
+    }
+
+    $crop = Crop::create([
+        'farm_id' => $farm->id,
+        'crop_name' => $request->crop_name,
+        'planting_date' => $request->planting_date,
+        'harvest_date' => $request->harvest_date,
+        'expected_product' => $request->expected_product
+    ]);
+
+    return new CropResource($crop);
+}
+
+     /*
     public function store(CropRequest $request, $farmId){
         
         $request->validated($request->all());
@@ -80,7 +133,7 @@ class CropController extends Controller
         ]);
 
         return new CropResource($crop);
-    }
+    }*/
 
     /**
      * Display the specified resource.

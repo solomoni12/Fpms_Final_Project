@@ -8,7 +8,7 @@
     </div>
     <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <!-- Name Column -->
+      <!-- Crop Name Column -->
       <ng-container matColumnDef="crop_name">
         <th mat-header-cell mat-sort-header *matHeaderCellDef>Crop Name </th>
         <td mat-cell *matCellDef="let element"> {{element.crop_name}} </td>
@@ -29,7 +29,7 @@
       <!-- Expected product Column -->
       <ng-container matColumnDef="expected_product">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Expected Product</th>
-        <td mat-cell *matCellDef="let element"> {{element.expected_product}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.expected_product}}kg </td>
       </ng-container>
 
        <!-- Action Column -->

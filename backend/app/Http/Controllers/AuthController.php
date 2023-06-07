@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Password;
 use App\Http\Requests\ChangePasswordRequest;
 
 class AuthController extends Controller
@@ -110,4 +113,66 @@ class AuthController extends Controller
             'message'=>'You have been successfuly logged out and your token has been deleted'
         ]);
     }
+
+    public function forgotPassword(Request $request){
+
+        $request->validate(['email' => 'required|email']);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return $this->error('', 'Email not found', 404);
+        }
+
+        $token = Str::random(60);
+
+        DB::table('password_resets')->updateOrInsert(
+            ['email' => $request->email],
+            ['email' => $request->email, 'token' => $token]
+        );
+
+        return $this->success([
+            'message' => 'Password reset token generated',
+            'token' => $token,
+        ]);
+    }
+
+    public function resetPassword(Request $request){
+
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+
+        $resetRecord = DB::table('password_resets')
+            ->where('email', $request->email)
+            ->where('token', $request->token)
+            ->first();
+
+        if (!$resetRecord) {
+            return $this->error('', 'Invalid reset token', 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return $this->error('', 'Email not found', 404);
+        }
+
+        $user->forceFill([
+            'password' => Hash::make($request->password),
+        ])->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        DB::table('password_resets')
+            ->where('email', $request->email)
+            ->delete();
+
+        return $this->success([
+            'message' => 'Password reset successfully',
+        ]);
+    }
+    
 }
