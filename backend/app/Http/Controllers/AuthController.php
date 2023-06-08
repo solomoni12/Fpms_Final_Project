@@ -121,7 +121,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
-            return $this->error('', 'Email not found', 404);
+            return $this->error('', 'Invalid email. Plaese Try again', 404);
         }
 
         $token = Str::random(60);
@@ -151,13 +151,13 @@ class AuthController extends Controller
             ->first();
 
         if (!$resetRecord) {
-            return $this->error('', 'Invalid reset token', 400);
+            return $this->error('', 'Invalid reset token or emal!', 400);
         }
 
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
-            return $this->error('', 'Email not found', 404);
+            return $this->error('', 'Invalid email. Plaese Try again', 404);
         }
 
         $user->forceFill([

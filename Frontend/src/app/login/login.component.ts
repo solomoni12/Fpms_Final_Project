@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
           if (this.userdata.isactive == 1) {
             this.token = result.data.token;
+            console.log(this.token);
             localStorage.setItem('token', this.token);
 
             sessionStorage.setItem('token', this.token);

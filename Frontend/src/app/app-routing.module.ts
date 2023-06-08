@@ -21,6 +21,8 @@ import { ProductComponent } from './user/product/product.component';
 import { ProductListComponent } from './user/product/product-list/product-list.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -45,7 +47,9 @@ const routes: Routes = [
     ]
   },
     { path:'register', component: RegisterComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+    { path: 'reset-password', component: ResetPasswordComponent}
     
   /*
   { path:'', component: HomeComponent, canActivate: [AuthGuard] },

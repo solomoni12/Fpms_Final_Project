@@ -60,6 +60,8 @@ import { UpdateEquipmentComponent } from './user/equipment/update-equipment/upda
 import { AddEquipmentComponent } from './user/equipment/add-equipment/add-equipment.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +109,8 @@ import { ProfileComponent } from './user/profile/profile.component';
     AddEquipmentComponent,
     ChangePasswordComponent,
     ProfileComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

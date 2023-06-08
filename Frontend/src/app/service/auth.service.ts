@@ -49,6 +49,8 @@ import { Crop } from '../model/crop/crop.module';
 import { Product } from '../model/product/product.module';
 import { Equipment } from '../model/equipment/equipment.module';
 import { ChangePassword } from '../model/change-password/change-password.module';
+import { ForgotPassword } from '../model/forgot-password/forgot-password.module';
+import { ResetPassword } from '../model/reset-password/reset-password.module';
 
 
 export class User {
@@ -127,6 +129,13 @@ export class AuthService {
   // ChangePassword
   changepassword(changepassword: ChangePassword): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/changepassword', changepassword, { headers: this.headers });
+  }
+  // forgot password http://127.0.0.1:8000/api/password/reset
+  forgotPassword(forgotPassword: ForgotPassword): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/password/forgot', forgotPassword);
+  }
+  resetPassword(resetPassword: ResetPassword): Observable<any> {
+    return this.http.post<any> ('http://127.0.0.1:8000/api/password/reset', resetPassword);
   }
   getUser(): Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/user');
