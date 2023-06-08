@@ -27,15 +27,6 @@ class CropController extends Controller
         return CropResource::collection($crops);
     }
     
-    //  public function index()
-    //  {
-    //      $user = Auth::user();
-    //      $crops = Crop::whereHas('farm', function ($query) use ($user) {
-    //          $query->where('user_id', $user->id);
-    //      })->get();
-     
-    //      return CropResource::collection($crops);
-    //  }
      
      public function crops()
      {
@@ -46,11 +37,7 @@ class CropController extends Controller
              'crop' => $crops
          ]);
      }
-    //  public function crops($farmId){
 
-    //     $crops = Crop::where('farm_id', $farmId)->get();
-    //     return CropResource::collection($crops);
-    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -88,7 +75,7 @@ class CropController extends Controller
             ->first();
 
         if (!$product) {
-            return response()->json(['message' => 'The crop and farm combination does not exist in the product table'], 400);
+            return response()->json(['message' => 'farm have crop and not harvested'], 400);
         }
 
         // Check the status from the Product table

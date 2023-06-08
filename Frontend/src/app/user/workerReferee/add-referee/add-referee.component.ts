@@ -12,6 +12,7 @@ import * as alertifyjs from 'alertifyjs';
 })
 export class AddRefereeComponent implements OnInit {
 
+  errorMessage:any;
   constructor(private formBuilder: UntypedFormBuilder,
     private service: AuthService,
     private router: Router,
@@ -35,13 +36,16 @@ export class AddRefereeComponent implements OnInit {
     console.log(workerId);
     if(this.registerform.valid){
       this.service.registerReferee(this.registerform.value, workerId)
-        .subscribe(res=>{
+        .subscribe((res)=>{
           console.log(res);
           alertifyjs.success('referee added sucessful!');
           this.registerform.reset();
           this.dialog.close('update');
+        },
+        (error)=>{
+          this.errorMessage = error.error.message;
+          alertifyjs.error(this.errorMessage);
         })
-        // alertifyjs.error('Failed. Please Try Again');
     }
     else{
       

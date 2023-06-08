@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->smallInteger('role')->default(0);
-            $table->smallInteger('isactive')->default(0);
+            $table->smallInteger('isactive')->default(1);
             $table->string('sex');
             $table->string('physical_address');
             $table->bigInteger('phone_number');

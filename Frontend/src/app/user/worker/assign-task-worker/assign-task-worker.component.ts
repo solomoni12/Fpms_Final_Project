@@ -15,6 +15,7 @@ export class AssignTaskWorkerComponent implements OnInit {
   statuslist = ['in progress'];
   tasklist = ['Plant', 'inspect','harvest crops','Irrigate farm soil','Apply fertilizer or pesticide solutions ']
   namelist:any;
+  errerMessage:any;
   constructor(private formBuilder: UntypedFormBuilder,
     private service: AuthService,
     private router: Router,
@@ -41,13 +42,19 @@ export class AssignTaskWorkerComponent implements OnInit {
     console.log(this.registerform.value);
     if(this.registerform.valid){
       this.service.assignTaskToWorker(this.registerform.value, this.data.id, this.registerform.value.name)
-        .subscribe(res=>{
+        .subscribe((res)=>{
           console.log(res);
           alertifyjs.success('Worker assign task sucessful');
+          this.router.navigate(['/assigment']);
+          this.registerform.reset();
+          this.dialog.close('update');
+        },
+        (error)=>{
+          this.errerMessage = error.error;
+          alertifyjs.error(this.errerMessage.error);
           this.registerform.reset();
           this.dialog.close('update');
         })
-        // alertifyjs.error('Failed. Please Try Again');
     }
     else{
       

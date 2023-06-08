@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AddCropComponent implements OnInit {
 
+  errorMessage:any;
   constructor(private formBuilder: UntypedFormBuilder,
     private service: AuthService,
     private router: Router,
@@ -35,15 +36,17 @@ export class AddCropComponent implements OnInit {
     console.log(farmId);
     if(this.registerform.valid){
       this.service.registerCrop(this.registerform.value, farmId)
-        .subscribe({ next: res=>{
+        .subscribe((res)=>{
           console.log(res);
           alertifyjs.success('crop added sucessful!');
           this.registerform.reset();
           this.dialog.close('update');
         },
-        error:()=>{
-          alertifyjs.error('Failed. Please Try Again');
-        }
+        (error)=>{
+          this.errorMessage = error.error.message;
+          console.log(this.errorMessage);
+          alertifyjs.error(this.errorMessage);
+        
       })
         // alertifyjs.error('Failed. Please Try Again');
     }

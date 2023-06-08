@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       email:this.formBuilder.control('', Validators.compose([Validators.required,Validators.email])),
       sex:this.formBuilder.control('male'),
       role:this.formBuilder.control(0),
-      isactive:this.formBuilder.control(0),
+      isactive:this.formBuilder.control(1),
     })
     proceedregistration() {
       console.log(this.registerform.value);
@@ -57,5 +57,4 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
