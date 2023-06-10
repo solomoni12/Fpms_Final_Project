@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { AddEquipmentComponent } from '../add-equipment/add-equipment.component';
 import { UpdateEquipmentComponent } from '../update-equipment/update-equipment.component';
 import * as alertifyjs from 'alertifyjs';
+import { jsPDF } from "jspdf";
 
 @Component({
   selector: 'app-equipmentlist',
@@ -82,5 +83,27 @@ export class EquipmentlistComponent implements OnInit {
     if (deletepop) {
       this.LoadInput();
     }
+  }
+
+  printPDF() {
+    const doc = new jsPDF();
+  
+    doc.setFontSize(16);
+    doc.text('Equipment List', 80, 10);
+  
+    doc.setFontSize(12);
+    doc.text('Equipment Name', 20, 20);
+    doc.text('Equipment Quantity', 100, 20);
+    doc.setFontSize(10);
+  
+    let y = 30;
+    this.equipmentlist.forEach((element: any) => {
+      doc.text(element.name?.toString() || '', 20, y);
+      doc.text(element.quantity?.toString() || '', 100, y);
+  
+      y += 10;
+    });
+  
+    doc.save('equipmentlist.pdf');
   }
 }

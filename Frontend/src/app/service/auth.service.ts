@@ -118,19 +118,15 @@ export class AuthService {
   register(user: User): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/register', user);
   }
-  // Login  
   signin(user: User): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/login', user);
   }
-  // logged user
   loggedUser(): Observable<any> {
     return this.http.get<any>('http://127.0.0.1:8000/api/logged');
   }
-  // ChangePassword
   changepassword(changepassword: ChangePassword): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/changepassword', changepassword, { headers: this.headers });
   }
-  // forgot password http://127.0.0.1:8000/api/password/reset
   forgotPassword(forgotPassword: ForgotPassword): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/password/forgot', forgotPassword);
   }
@@ -144,7 +140,6 @@ export class AuthService {
     return this.http.put(`http://127.0.0.1:8000/api/user/${id}`, data, { headers: this.headers });
   }
 
-  // http://127.0.0.1:8000/api/logout
   logout(): Observable<any>{
     return this.http.post(`http://127.0.0.1:8000/api/logout`,{ headers: this.headers })
   }
@@ -260,9 +255,6 @@ export class AuthService {
 // start Product Api
   getProduct(farmId:number): Observable<any>{
     return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/products`, { headers: this.headers });
-  }
-  getcrop(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/crops', { headers: this.headers });
   }
   UpdateProduct(data:any, id: number){
     return this.http.put(`http://127.0.0.1:8000/api/products/${id}`, data, { headers: this.headers });

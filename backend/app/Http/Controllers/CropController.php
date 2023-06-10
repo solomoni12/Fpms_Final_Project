@@ -95,32 +95,6 @@ class CropController extends Controller
     return new CropResource($crop);
 }
 
-     /*
-    public function store(CropRequest $request, $farmId){
-        
-        $request->validated($request->all());
-
-        $farm = Farm::findOrFail($farmId);
-
-        if($farm->user_id != Auth::id()){
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-
-        // Check if Farm already has a Crop associated with it
-        if (Crop::where('farm_id', $farm->id)->exists()) {
-            return response()->json(['message' => 'Farm already has a Crop associated with it'], 400);
-        }
-
-        $crop = Crop::create([
-            'farm_id' => $farm->id,
-            'crop_name' => $request->crop_name,
-            'planting_date' => $request->planting_date,
-            'harvest_date' => $request->harvest_date,
-            'expected_product' => $request->expected_product
-        ]);
-
-        return new CropResource($crop);
-    }*/
 
     /**
      * Display the specified resource.

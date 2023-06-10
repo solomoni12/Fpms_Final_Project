@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { AddworkerComponent } from '../addworker/addworker.component';
 import { UpdateworkerComponent } from '../updateworker/updateworker.component';
 import * as alertifyjs from 'alertifyjs';
+import { jsPDF } from "jspdf";
 import { AssignTaskWorkerComponent } from '../assign-task-worker/assign-task-worker.component';
 
 @Component({
@@ -31,9 +32,7 @@ export class WorkerlistingComponent implements OnInit {
   LoadWorker(){
     this.service.getWorker().subscribe(res=>{
       this.workerlist = res.data;
-      // console.log(this.workerlist);
       this.dataSource = new MatTableDataSource(this.workerlist);
-      // console.log(this.dataSource);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
@@ -89,5 +88,34 @@ export class WorkerlistingComponent implements OnInit {
       if(deletepop){
         this.LoadWorker();
       }
+    }
+
+    printPDF() {
+      const doc = new jsPDF();
+    
+      doc.setFontSize(16);
+      doc.text('Worker List', 80, 10);
+    
+      doc.setFontSize(12);
+      doc.text('First Name', 10, 20);
+      doc.text('Last Name', 50, 20);
+      doc.text('Phone Number', 95, 20);
+      doc.text('Physical Address', 135, 20);
+      doc.text('Sex', 175, 20);
+      
+      doc.setFontSize(10);
+    
+      let y = 30;
+      this.workerlist.forEach((element: any) => {
+        doc.text(element.fname?.toString() || '', 10, y);
+        doc.text(element.lname?.toString() || '', 50, y);
+        doc.text(element.phone_number?.toString() || '', 95, y);
+        doc.text(element.physical_address?.toString() || '', 135, y);
+        doc.text(element.sex?.toString() || '', 175, y);
+    
+        y += 10;
+      });
+    
+      doc.save('workerlist.pdf');
     }
 }

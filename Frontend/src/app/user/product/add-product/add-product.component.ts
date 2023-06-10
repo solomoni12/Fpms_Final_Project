@@ -29,10 +29,10 @@ export class AddProductComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.service.getcrop().subscribe(res=>{
-      this.namelist = res.data.crop;
+    this.service.getCrop(this.data.id).subscribe(res => {
+      this.namelist = res.data;
       console.log(this.namelist);
-    })
+    });
     console.log(this.data);
   }
 

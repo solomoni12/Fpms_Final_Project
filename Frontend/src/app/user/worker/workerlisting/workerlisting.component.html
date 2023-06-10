@@ -2,7 +2,9 @@
     <div class="demo-button-container">
         <a class="demo-button" mat-fab color="primary" (click)="AddWorker()">
             <mat-icon>plus_one</mat-icon>
-          <!-- <span>add</span> -->
+        </a>
+        <a class="demo-button" mat-fab color="primary" (click)="printPDF()">
+          <mat-icon>print</mat-icon>
         </a>
     </div>
     <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">

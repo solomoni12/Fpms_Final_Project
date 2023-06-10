@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as alertifyjs from 'alertifyjs';
+import { jsPDF } from "jspdf";
 import { AuthService } from 'src/app/service/auth.service';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { UpdateProductComponent } from '../update-product/update-product.component';
@@ -86,4 +87,30 @@ export class ProductListComponent implements OnInit {
       }
     }
 
+    printPDF() {
+      const doc = new jsPDF();
+    
+      doc.setFontSize(16);
+      doc.text('Product List', 80, 10);
+    
+      doc.setFontSize(12);
+      doc.text('Product Name', 10, 20);
+      doc.text('Harvest Date', 50, 20);
+      doc.text('Product Quantity', 95, 20);
+      doc.text('Product Status', 150, 20);
+      
+      doc.setFontSize(10);
+    
+      let y = 30;
+      this.refereelist.forEach((element: any) => {
+        doc.text(element.product_name?.toString() || '', 10, y);
+        doc.text(element.harvest_date?.toString() || '', 50, y);
+        doc.text(element.quantity?.toString() || '', 95, y);
+        doc.text(element.status?.toString() || '', 150, y);
+    
+        y += 10;
+      });
+    
+      doc.save('productlist.pdf');
+    }
 }

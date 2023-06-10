@@ -48,7 +48,6 @@ export class AddCropComponent implements OnInit {
           alertifyjs.error(this.errorMessage);
         
       })
-        // alertifyjs.error('Failed. Please Try Again');
     }
     else{
       
