@@ -17,6 +17,7 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { SidebarComponent } from './user/sidebar/sidebar.component';
 import { HomComponent } from './user/hom/hom.component';
 import { TokenInterceptor } from './service/token.intrceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // material
 import {MatSelectModule} from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -131,8 +132,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass:TokenInterceptor,
+      useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]

@@ -45,6 +45,9 @@ updateForm !: FormGroup;
         console.log(res);
         this.updateForm.reset();
         this.dialog.close('update');
+      }, 
+      error: ()=>{
+        alertifyjs.error('failed. Please Try again');
       }
     });
   }else{

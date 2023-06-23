@@ -31,7 +31,6 @@ export class FarmlistingComponent implements OnInit {
       this.farmlist = res.data.user;
       console.log(this.farmlist);
       this.dataSource = new MatTableDataSource(this.farmlist);
-      // console.log(this.dataSource);
     
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -39,7 +38,6 @@ export class FarmlistingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.service.IsloggedIn();
   }
 
   displayedColumns: string[] = ['name', 'location', 'land_title', 'size', 'action'];

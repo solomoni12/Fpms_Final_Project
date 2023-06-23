@@ -55,46 +55,85 @@ class CropController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function store(CropRequest $request, $farmId)
-{
-    $request->validated($request->all());
+    public function store(CropRequest $request, $farmId){
+        
+        $request->validated($request->all());
 
-    $farm = Farm::findOrFail($farmId);
+        $farm = Farm::findOrFail($farmId);
 
-    if ($farm->user_id != Auth::id()) {
-        return response()->json(['message' => 'Unauthorized'], 401);
-    }
-
-    // Check if Farm already has a Crop associated with it
-    $existingCrop = Crop::where('farm_id', $farm->id)->first();
-    
-    if ($existingCrop) {
-        // Check if the Crop and Farm exist in the Product table
-        $product = Product::where('crop_id', $existingCrop->id)
-            ->where('farm_id', $farm->id)
-            ->first();
-
-        if (!$product) {
-            return response()->json(['message' => 'farm have crop and not harvested'], 400);
+        if ($farm->user_id != Auth::id()) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        // Check the status from the Product table
-        if ($product->status !== 'sold') {
-            return response()->json(['message' => 'Cannot create a new crop. The product status is not "sold"'], 400);
+        $existingCrops = Crop::where('farm_id', $farm->id)->get();
+
+        foreach ($existingCrops as $index => $existingCrop) {
+            // Check if the Crop and Farm exist in the Product table
+            $product = Product::where('crop_id', $existingCrop->id)
+                ->where('farm_id', $farm->id)
+                ->first();
+
+            if (!$product) {
+                return response()->json(['message' => 'Cannot create a new crop. Crop '.$index.' is not found in the Product table'], 400);
+            }
+            if ($product->status !== 'sold') {
+                return response()->json(['message' => 'Cannot create a new crop. Crop '.$index.' status is not "sold"'], 400);
+            }
         }
+
+        $crop = Crop::create([
+            'farm_id' => $farm->id,
+            'crop_name' => $request->crop_name,
+            'planting_date' => $request->planting_date,
+            'harvest_date' => $request->harvest_date,
+            'expected_product' => $request->expected_product
+        ]);
+
+        return new CropResource($crop);
     }
 
-    $crop = Crop::create([
-        'farm_id' => $farm->id,
-        'crop_name' => $request->crop_name,
-        'planting_date' => $request->planting_date,
-        'harvest_date' => $request->harvest_date,
-        'expected_product' => $request->expected_product
-    ]);
 
-    return new CropResource($crop);
-}
 
+/*
+    public function store(CropRequest $request, $farmId){
+        $request->validated($request->all());
+
+        $farm = Farm::findOrFail($farmId);
+
+        if ($farm->user_id != Auth::id()) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        // Check if Farm already has a Crop associated with it
+        $existingCrop = Crop::where('farm_id', $farm->id)->first();
+        
+        if ($existingCrop) {
+            // Check if the Crop and Farm exist in the Product table
+            $product = Product::where('crop_id', $existingCrop->id)
+                ->where('farm_id', $farm->id)
+                ->first();
+
+            if (!$product) {
+                return response()->json(['message' => 'farm have crop and not harvested'], 400);
+            }
+
+            // Check the status from the Product table
+            if ($product->status !== 'sold') {
+                return response()->json(['message' => 'Cannot create a new crop. The product status is not "sold"'], 400);
+            }
+        }
+
+        $crop = Crop::create([
+            'farm_id' => $farm->id,
+            'crop_name' => $request->crop_name,
+            'planting_date' => $request->planting_date,
+            'harvest_date' => $request->harvest_date,
+            'expected_product' => $request->expected_product
+        ]);
+
+        return new CropResource($crop);
+    }
+*/
 
     /**
      * Display the specified resource.

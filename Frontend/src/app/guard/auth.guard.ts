@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
             if (this.service.GetUserrole() === '1') {
               return true;
             } else {
-              this.router.navigate(['']);
+              this.router.navigate(['/logout']);
               alertifyjs.error('You do not have access to this page.');
               return false;
             }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserlistingComponent } from './userlisting/userlisting.component';
@@ -49,21 +48,15 @@ const routes: Routes = [
     { path:'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'reset-password', component: ResetPasswordComponent}
+    { path: 'reset-password', component: ResetPasswordComponent},
+
+    {
+      path: "",
+      pathMatch: "full",
+      redirectTo: "login"
+    },
+
     
-  /*
-  { path:'', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomComponent,
-    children:[
-      {path: 'dashboard', component: DashboardComponent},
-      {path: 'setting', component:SettingComponent}
-    ], canActivate: [AuthGuard]
-  },
-  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]},
-  { path:'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'user', component: UserlistingComponent, canActivate: [AuthGuard]},
- */
 ];
 
 @NgModule({

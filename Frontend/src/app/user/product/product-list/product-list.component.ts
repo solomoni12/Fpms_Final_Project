@@ -76,7 +76,7 @@ export class ProductListComponent implements OnInit {
     const deletepop = this.service.deleteProduct(id)
           .subscribe({
             next:(res)=>{
-              alertifyjs.success('Worker referee deleted')
+              alertifyjs.success('product deleted')
             },
             error:()=>{
               alertifyjs.error('Failed. Please Try Again');

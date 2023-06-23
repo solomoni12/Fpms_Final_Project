@@ -88,18 +88,29 @@ class InputController extends Controller
         ], 201);
     }
     
-
-
     
     // function to get Input with their equipment 
-    public function getInputsWithEquipment(){
-        
-        $inputs = Input::with('equipments')->get();
-
-        return $this->success([
-            'inputs' => $inputs
-        ]);
+    public function getInputsWithEquipment()
+{
+    // Check if the user is authenticated
+    if (!auth()->check()) {
+        return $this->error('', 'Unauthenticated', 401);
     }
+
+    // Retrieve the authenticated user's equipment
+    $user = auth()->user();
+    $equipmentIds = $user->equipment->pluck('id');
+
+    // Retrieve inputs with equipment based on the equipment relationship
+    $inputs = Input::whereHas('equipments', function ($query) use ($equipmentIds) {
+        $query->whereIn('id', $equipmentIds);
+    })->with('equipments')->get();
+
+    return $this->success([
+        'inputs' => $inputs
+    ]);
+}
+
 
 
     /**

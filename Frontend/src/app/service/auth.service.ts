@@ -1,44 +1,3 @@
-/*import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
-
-  constructor(private http: HttpClient) { }
-  apiurl = 'http://127.0.0.1:8000/api/';
-
-  GetAll(){
-    return this.http.get(this.apiurl);
-  }
-
-  GetAllRole(){
-    return this.http.get('http://127.0.0.1:8000/api/');
-  }
-
-  GetbyCode(email:any){
-    return this.http.post(this.apiurl,'login');
-  }
-
-  proceedregister(inputdata:any){
-    return this.http.post(this.apiurl, inputdata);
-  }
-
-  updateuser(code:any, inputdata:any){
-    return this.http.put(this.apiurl+'/'+code, inputdata);
-  }
-
-  IsloggedIn(){
-    return sessionStorage.getItem('username') != null;
-    // return !!localStorage.getItem('token');
-  }
-
-  GetUserrole(){
-    return sessionStorage.getItem('userrole') != null?sessionStorage.getItem('userrole')?.toString():'';
-  }
-}*/
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -80,13 +39,15 @@ export class AuthService {
     });
   }
 
-  apiurl = 'http://127.0.0.1:8000/api/farms';
-  api = 'http://127.0.0.1:8000/api/workers';
-  urlapi = 'http://127.0.0.1:8000/api';
-  referee = 'http://127.0.0.1:8000/api/referees'
+  /*
+    http://127.0.0.1:8000/api
+    https://fpmsapi.solo.co.tz/api
 
+  */
+  urlapi = 'http://127.0.0.1:8000/api';
+  
   updateuser(code:any, inputdata:any){
-    return this.http.put(this.apiurl+'/'+code, inputdata);
+    return this.http.put(`${this.urlapi}/farms/${code}`, inputdata);
   }
 
   IsloggedIn() {
@@ -116,156 +77,149 @@ export class AuthService {
  
   // User registration 
   register(user: User): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/register', user);
+    return this.http.post(`${this.urlapi}/register`, user);
   }
   signin(user: User): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/login', user);
+    return this.http.post<any>(`${this.urlapi}/login`, user);
   }
   loggedUser(): Observable<any> {
-    return this.http.get<any>('http://127.0.0.1:8000/api/logged');
+    return this.http.get<any>(`${this.urlapi}/logged`);
   }
   changepassword(changepassword: ChangePassword): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/changepassword', changepassword, { headers: this.headers });
+    return this.http.post<any>(`${this.urlapi}/changepassword`, changepassword, { headers: this.headers });
   }
   forgotPassword(forgotPassword: ForgotPassword): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/password/forgot', forgotPassword);
+    return this.http.post<any>(`${this.urlapi}/password/forgot`, forgotPassword);
   }
   resetPassword(resetPassword: ResetPassword): Observable<any> {
-    return this.http.post<any> ('http://127.0.0.1:8000/api/password/reset', resetPassword);
+    return this.http.post<any> (`${this.urlapi}/password/reset`, resetPassword);
   }
   getUser(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/user');
+    return this.http.get<any>(`${this.urlapi}/user`);
   }
   UpdateUser(data:any, id: number){
-    return this.http.put(`http://127.0.0.1:8000/api/user/${id}`, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/user/${id}`, data, { headers: this.headers });
   }
 
   logout(): Observable<any>{
-    return this.http.post(`http://127.0.0.1:8000/api/logout`,{ headers: this.headers })
-  }
-
-  // Access user profile
-  profileUser(): Observable<any> {
-    return this.http.get(this.apiurl);
+    return this.http.post(`${this.urlapi}/logout`,{ headers: this.headers })
   }
 
   //farm Api Start
   getFarm(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/farms', { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/farms`, { headers: this.headers });
   }
 
   updatFarm(data:any, id: number){
-    return this.http.put(this.apiurl+'/'+id, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/farms/${id}`, data, { headers: this.headers });
   }
 
   deleteFarm(id:any){
-    return this.http.delete(this.apiurl+'/'+id, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/farms/${id}`, { headers: this.headers });
   }
 
    
    registerFarm(farm:Farm): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/farms', farm, { headers: this.headers });
+    return this.http.post(`${this.urlapi}/farms`, farm, { headers: this.headers });
   }
   // farm Api End
 
   // Worker Api Start
   getWorker(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/workers', { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/workers`, { headers: this.headers });
   }
 
   registerWorker(worker:Worker): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/workers', worker);
+    return this.http.post(`${this.urlapi}/workers`, worker);
   }
   updatWorker(data:any, id: number){
-    return this.http.put(this.api+'/'+id, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/workers/${id}`, data, { headers: this.headers });
   }
 
   deleteworker(id:any){
-    return this.http.delete(this.api+'/'+id, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/workers/${id}`, { headers: this.headers });
   }
   // Worker Api end
 
   getAssigment(workerId: number): Observable<any> {
-    return this.http.get<any>(`http://127.0.0.1:8000/api/workers/${workerId}/assignments`, { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/workers/${workerId}/assignments`, { headers: this.headers });
   }
   
   updateAssigment(data:any, id: number){
-    return this.http.put(`http://127.0.0.1:8000/api/assignments/${id}`, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/assignments/${id}`, data, { headers: this.headers });
   }
   deleteAssigment(id:any){
-    return this.http.delete(`http://127.0.0.1:8000/api/assignments/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/assignments/${id}`, { headers: this.headers });
   }
 
   assignTaskToWorker(assign:Assignment, workerId:number, farmId:number){
     const url = `${this.urlapi}/workers/${workerId}/farms/${farmId}/assignments`;
     return this.http.post(url, assign, { headers: this.headers } )
   }
-
-  // Assignment Api End
+  // Assignment Api End   
 
   //referee start
   getReferee(workerId:number): Observable<any>{
-    return this.http.get<any>(`http://127.0.0.1:8000/api/workers/${workerId}/workerreferees`, { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/workers/${workerId}/workerreferees`, { headers: this.headers });
   }
   registerReferee(referee:Referee, workerId:number): Observable<any> {
-    return this.http.post(`http://127.0.0.1:8000/api/workers/${workerId}/referees`, referee);
+    return this.http.post(`${this.urlapi}/workers/${workerId}/referees`, referee);
   }
   updateReferee(data:any, id: number){
-    return this.http.put(this.referee+'/'+id, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/referees/${id}`, data, { headers: this.headers });
   }
   deleteworkerReferee(id:any){
-    
-    return this.http.delete(this.referee+'/'+id, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/referees/${id}`, { headers: this.headers });
   }
 
   // Input Service start
   registerInput(equipment:Equipment): Observable<any> {
     
-    return this.http.post('http://127.0.0.1:8000/api/inputs', equipment);
+    return this.http.post(`${this.urlapi}/inputs`, equipment);
   }
   
   getInput(): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/inputs-with-equipment', { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/inputs-with-equipment`, { headers: this.headers });
   }
   UpdateInput(data:any, id: number){
-    return this.http.put(`http://127.0.0.1:8000/api/inputs-with-equipment/${id}`, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/inputs-with-equipment/${id}`, data, { headers: this.headers });
   }
   deleteInput(id:any){
-    return this.http.delete(`http://127.0.0.1:8000/api/inputs/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/inputs/${id}`, { headers: this.headers });
   }
   getEquipment():Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/api/equipments/', {headers: this.headers});
+    return this.http.get<any>('${this.urlapi}/equipments/', {headers: this.headers});
   }
 
-  // Crop API http://127.0.0.1:8000/api/farms/1/crops
+  // Crop API 
   registerCrop(crop:Crop, farmId:number): Observable<any> {
-    return this.http.post(`http://127.0.0.1:8000/api/farms/${farmId}/crops`, crop);
+    return this.http.post(`${this.urlapi}/farms/${farmId}/crops`, crop);
   }
   getCrop(farmId:number): Observable<any>{
-    return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/crops`, { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/farms/${farmId}/crops`, { headers: this.headers });
   }
   UpdateCrop(data:any, id: number){
-    return this.http.put(`http://127.0.0.1:8000/api/crops/${id}`, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/crops/${id}`, data, { headers: this.headers });
   }
   deleteCrop(id:any){
-    return this.http.delete(`http://127.0.0.1:8000/api/crops/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/crops/${id}`, { headers: this.headers });
   }
 // end crop api
 
 // start Product Api
   getProduct(farmId:number): Observable<any>{
-    return this.http.get<any>(`http://127.0.0.1:8000/api/farms/${farmId}/products`, { headers: this.headers });
+    return this.http.get<any>(`${this.urlapi}/farms/${farmId}/products`, { headers: this.headers });
   }
   UpdateProduct(data:any, id: number){
-    return this.http.put(`http://127.0.0.1:8000/api/products/${id}`, data, { headers: this.headers });
+    return this.http.put(`${this.urlapi}/products/${id}`, data, { headers: this.headers });
   }
   
   deleteProduct(id:any){
-    return this.http.delete(`http://127.0.0.1:8000/api/products/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.urlapi}/products/${id}`, { headers: this.headers });
   }
   
   registerProduct(product:Product, farmId:number, cropId:number){
-    return this.http.post(`http://127.0.0.1:8000/api/farms/${farmId}/crops/${cropId}/products`, product, { headers: this.headers } )
+    return this.http.post(`${this.urlapi}/farms/${farmId}/crops/${cropId}/products`, product, { headers: this.headers } )
   }
 
 }

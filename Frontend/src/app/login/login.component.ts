@@ -10,6 +10,9 @@ import * as alertifyjs from 'alertifyjs';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
+  imageUrl = 'assets/Untitled-11.jpg';
+  
   constructor(
     private formBuilder: UntypedFormBuilder,
     private service: AuthService,
@@ -35,7 +38,7 @@ export class LoginComponent implements OnInit {
 
           if (this.userdata.isactive == 1) {
             this.token = result.data.token;
-            console.log(this.token);
+
             localStorage.setItem('token', this.token);
 
             sessionStorage.setItem('token', this.token);
@@ -47,7 +50,6 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('phone_number', this.userdata.phone_number);
             sessionStorage.setItem('physical_address', this.userdata.physical_address);
             
-            alertifyjs.success('Login successful');
             this.router.navigate(['']);
           } else {
             alertifyjs.error('You are not active. Please contact admin via mwalupani@gmail.com');

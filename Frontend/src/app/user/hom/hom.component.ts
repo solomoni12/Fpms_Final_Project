@@ -21,17 +21,13 @@ export class HomComponent implements OnInit {
     this.useremail = this.service.GetUserEmail();
     this.userfirstname = this.service.GetUserFirstName();
     this.userlastname = this.service.GetUsrLastName();
-    
-   console.log(this.useremail);
   }
-  setting(){}
 
   logout(){
     this.service.logout().subscribe({
       next:(res)=>{
-        localStorage.removeItem('token');
+        // localStorage.removeItem('token');
         this.router.navigate(['/login']);
-        alertifyjs.success('logout successful');
       },
       error:()=>{
         alertifyjs.error('Failed to logout. Please try again');

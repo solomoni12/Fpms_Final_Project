@@ -23,17 +23,29 @@ class StoreUserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
-    {
+
+    public function rules(){
         return [
-            'fname' => ['required', 'string', 'max:255'],
-            'lname' => ['required', 'string', 'max:255'],
-            'sex' => ['required', 'string', 'max:6'],
+            'fname' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z]+$/'],
+            'lname' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z]+$/'],
+            'sex' => ['required', 'string', 'max:6', 'regex:/^(male|female)$/i'],
             'physical_address' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'digits:10'],
+            'phone_number' => ['required', 'string', 'digits:10', 'regex:/^0\d{9}$/'],
             'email' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
-        
         ];
     }
+    // public function rules()
+    // {
+    //     return [
+    //         'fname' => ['required', 'string', 'max:255'],
+    //         'lname' => ['required', 'string', 'max:255'],
+    //         'sex' => ['required', 'string', 'max:6'],
+    //         'physical_address' => ['required', 'string', 'max:255'],
+    //         'phone_number' => ['required', 'string', 'digits:10'],
+    //         'email' => ['required', 'string', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        
+    //     ];
+    // }
 }

@@ -4,7 +4,8 @@
 @import "../node_modules/alertifyjs//build/css/themes/default.min.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Iconss');
+@import url('https://fonts.googleapis.com/css2?family=Material+Icons');
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -31,7 +32,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
   }
   table {
-    width: 98%;
+    width: 90%;
+    margin-left: 20px;
   }
 
   .demo-table {
@@ -40,13 +42,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   
   .demo-button-container {
     padding-bottom: 16px;
+    margin-left: 20px;
   }
   
   .demo-button + .demo-button {
     margin-left: 8px;
   }
   mat-paginator{
-    width: 98%;
+    width: 90%;
+    margin-left: 20px;
   }
 
   .menu-button{

@@ -120,5 +120,4 @@ export class WorkerAssigmentComponent implements OnInit {
     doc.save('assigmentList.pdf');
   }
   
-  
 }
