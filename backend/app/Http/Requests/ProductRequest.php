@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'product_name' => 'required|string|max:255',
             'status' => 'required|in:sold,processed,in stock',
-            'harvest_date' => 'required|date_format:Y-m-d',
+            'harvest_date' => 'required',
             'quantity' => 'required|string|max:255',
             
         ];

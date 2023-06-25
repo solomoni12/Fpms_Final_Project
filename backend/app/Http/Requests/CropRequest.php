@@ -25,8 +25,8 @@ class CropRequest extends FormRequest
     {
         return [
             'crop_name' => 'required|string|max:255',
-            'planting_date' => 'required|date_format:Y-m-d',
-            'harvest_date' => 'required|date_format:Y-m-d',
+            'planting_date' => 'required',
+            'harvest_date' => 'required',
             'expected_product' => 'required|string|max:255'
         ];
     }

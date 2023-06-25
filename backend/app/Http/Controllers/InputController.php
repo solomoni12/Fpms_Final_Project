@@ -42,74 +42,72 @@ class InputController extends Controller
 
     //  function to store input
     
-    public function store(StoreInputRequest $request)
-    {
+    public function store(StoreInputRequest $request){
+
         $validatedData = $request->validated();
-    
+
         $name = $validatedData['name'];
-    
-        // Check if the name exists in the Input table
-        $input = Input::where('name', $name)->first();
-    
+
+        // Check if the name exists in the Input table for the authenticated user
+        $input = Input::where('name', $name)
+            ->whereHas('equipments', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->first();
+
         if ($input) {
-            // Update the quantity of the associated equipment
-            $equipment = Equipment::where('input_id', $input->id)->first();
-    
+            $equipment = $input->equipments()
+                ->where('user_id', auth()->user()->id)
+                ->first();
+
             if ($equipment) {
                 $equipment->quantity += $validatedData['equipment_quantity'];
                 $equipment->save();
             } else {
-                // Create a new equipment associated with the existing input
                 $equipment = Equipment::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => auth()->user()->id,
                     'input_id' => $input->id,
                     'quantity' => $validatedData['equipment_quantity'],
                 ]);
             }
         } else {
-            // Create a new input
             $input = Input::create([
                 'name' => $name,
                 'quantity' => $validatedData['equipment_quantity'],
             ]);
-    
-            // Create a new equipment associated with the new input
+
             $equipment = Equipment::create([
-                'user_id' => Auth::user()->id,
+                'user_id' => auth()->user()->id,
                 'input_id' => $input->id,
                 'quantity' => $validatedData['equipment_quantity'],
             ]);
         }
-    
-        // Return the response with the created input and equipment
+
         return response()->json([
             'input' => $input,
             'equipment' => $equipment,
         ], 201);
     }
-    
+
     
     // function to get Input with their equipment 
-    public function getInputsWithEquipment()
-{
-    // Check if the user is authenticated
-    if (!auth()->check()) {
-        return $this->error('', 'Unauthenticated', 401);
+    public function getInputsWithEquipment(){
+    
+        if (!auth()->check()) {
+            return $this->error('', 'Unauthenticated', 401);
+        }
+
+        $user = auth()->user();
+        $equipmentIds = $user->equipment->pluck('id');
+
+        $inputs = Input::whereHas('equipments', function ($query) use ($equipmentIds) {
+            $query->whereIn('id', $equipmentIds);
+        })->with('equipments')->get();
+
+        return $this->success([
+            'inputs' => $inputs
+        ]);
     }
-
-    // Retrieve the authenticated user's equipment
-    $user = auth()->user();
-    $equipmentIds = $user->equipment->pluck('id');
-
-    // Retrieve inputs with equipment based on the equipment relationship
-    $inputs = Input::whereHas('equipments', function ($query) use ($equipmentIds) {
-        $query->whereIn('id', $equipmentIds);
-    })->with('equipments')->get();
-
-    return $this->success([
-        'inputs' => $inputs
-    ]);
-}
 
 
 
@@ -148,13 +146,13 @@ class InputController extends Controller
     // }
     public function updateInputsWithEquipment(Request $request, $id){
         
-        // Validate the request data
+       
         $request->validate([
             'input_name' => 'required',
             'equipment_quantity' => 'required'
         ]);
 
-        // Find the input by ID
+        
         $input = Input::find($id);
         if (!$input) {
             return $this->error('Input not found', 404);

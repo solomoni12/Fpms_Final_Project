@@ -21,10 +21,6 @@ class EquipmentController extends Controller
      */
     public function index(){
 
-    //  $equipment = Equipment::where('input_id', $inputId)->get();
-    //  return $this->success([
-    //     'equipment' => $equipment
-    // ]);
     return EquipmentResource::collection(
         Equipment::where('user_id', Auth::user()->id)->get()
     );

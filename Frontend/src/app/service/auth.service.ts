@@ -117,8 +117,6 @@ export class AuthService {
   deleteFarm(id:any){
     return this.http.delete(`${this.urlapi}/farms/${id}`, { headers: this.headers });
   }
-
-   
    registerFarm(farm:Farm): Observable<any> {
     return this.http.post(`${this.urlapi}/farms`, farm, { headers: this.headers });
   }
