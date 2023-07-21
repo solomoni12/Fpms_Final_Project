@@ -42,9 +42,8 @@ export class AuthService {
   /*
     http://127.0.0.1:8000/api
     https://fpmsapi.solo.co.tz/api
-
   */
-  urlapi = 'http://127.0.0.1:8000/api';
+  urlapi = 'https://fpmsapi.solo.co.tz/api';
   
   updateuser(code:any, inputdata:any){
     return this.http.put(`${this.urlapi}/farms/${code}`, inputdata);
@@ -84,6 +83,9 @@ export class AuthService {
   }
   loggedUser(): Observable<any> {
     return this.http.get<any>(`${this.urlapi}/logged`);
+  }
+  deleteUser(id:any){
+    return this.http.delete(`${this.urlapi}/users/${id}`, { headers: this.headers });
   }
   changepassword(changepassword: ChangePassword): Observable<any> {
     return this.http.post<any>(`${this.urlapi}/changepassword`, changepassword, { headers: this.headers });

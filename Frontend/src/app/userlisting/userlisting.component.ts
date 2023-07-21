@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../service/auth.service';
 import { UpdatepopupComponent } from '../updatepopup/updatepopup.component';
+import * as alertifyjs from 'alertifyjs';
 
 @Component({
   selector: 'app-userlisting',
@@ -50,7 +51,20 @@ export class UserlistingComponent implements OnInit {
       this.Loaduser();
     });
   }
-
+  deleteuser(id: number){
+    const deletepop = this.service.deleteUser(id)
+          .subscribe({
+            next:(res)=>{
+              alertifyjs.success('user deleted successful')
+            },
+            error:()=>{
+              alertifyjs.error('Failed. Please Try Again');
+            }
+          })
+      if(deletepop){
+        this.Loaduser();
+      }
+    }
   opendialog(){
     
   }

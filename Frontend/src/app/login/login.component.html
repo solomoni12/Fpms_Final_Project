@@ -1,5 +1,4 @@
 <div class="content">
-  <!-- <h2>Farm Production Management System-Fpms</h2> -->
   <mat-card>
     <mat-card-header>
       <h1>SignIn to Fpms</h1>
@@ -23,10 +22,12 @@
           </mat-label>
           <input type="password" matInput formControlName="password">
         </mat-form-field>
-        <div>
-          <button class="example-button-row" mat-raised-button color="primary">LogIn</button>
-          <button routerLink="/forgot-password" class="example-button-row" mat-raised-button color="warn">Forgot Password?</button>
-          <a routerLink="/register" mat-raised-button color="accent">New User?</a>
+        <div class="example-button-row">
+          <button mat-raised-button color="primary">LogIn</button>
+          <button routerLink="/forgot-password" mat-raised-button color="warn">Forgot Password?</button>
+        </div>
+        <div class="example-button-row new-user-button">
+          <button routerLink="/register" mat-raised-button color="accent">New User?</button>
         </div>
       </form>
     </mat-card-content>

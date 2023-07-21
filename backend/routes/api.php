@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get('/logged', [AuthController::class, 'logged_user']);
     Route::post('/changepassword', [AuthController::class, 'change_password']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::delete('/users/{userId}', [AuthController::class, 'deleteUser']);
     Route::resource('/farms',FarmController::class);
     Route::resource('/inputs',InputController::class);
     Route::resource('/products',ProductController::class);

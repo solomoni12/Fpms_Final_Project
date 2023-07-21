@@ -54,7 +54,9 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell mat-sort-header *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-            <a *ngIf="element.role != '1'" (click)="UpdateUser(element)"  mat-raised-button color="primary">Update</a>  
+            <a class="demo-button" *ngIf="element.role != '1'" (click)="UpdateUser(element)"  mat-raised-button color="primary">Update</a> 
+            <a class="demo-button" *ngIf="element.role != '1'" (click)="deleteuser(element.id)" mat-fab color="accent">
+              <mat-icon>delete</mat-icon></a>  
         </td>
       </ng-container>
   

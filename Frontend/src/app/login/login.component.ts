@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
           }
         },
         (error) => {
+          console.log(error);
           alertifyjs.error('Invalid username or password. Please try again!');
         }
       );

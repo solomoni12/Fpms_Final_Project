@@ -41,8 +41,10 @@ export class AddworkerComponent implements OnInit {
           alertifyjs.success('Worker added sucessful!');
           this.registerform.reset();
           this.dialog.close('update');
+        },
+        error=>{
+          alertifyjs.error('Phone number already exist. Please Try Again');
         })
-        // alertifyjs.error('Failed. Please Try Again');
     }
     else{
       

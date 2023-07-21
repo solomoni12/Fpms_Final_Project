@@ -63,6 +63,7 @@ import { ChangePasswordComponent } from './user/change-password/change-password.
 import { ProfileComponent } from './user/profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -127,7 +128,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatToolbarModule,
     MatInputModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    FlexLayoutModule
   ],
   providers: [
     {
