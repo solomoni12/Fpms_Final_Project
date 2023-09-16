@@ -60,3 +60,61 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100% !important;
     padding-left: 10px !important;
   }
+
+@media screen and (max-width: 601px) {
+    html, body { height: 100%; }
+    body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+    .mat-fab {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    .mat-fab .mat-button-wrapper {
+        padding: 0 !important;
+    }
+
+    .material-icons {
+        font-size: 18px;
+    }
+    .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+        font-size: 12px;
+    }
+    .example-button-row {
+        /* display: table-cell; */
+        max-width: 600px !important;
+        margin-top: 10px !important;
+        margin-right: 10px !important;
+        
+      }
+      table {
+        width: 90%;
+        margin-left: 20px;
+      }
+
+      .demo-table {
+        width: 100%;
+      }
+      
+      .demo-button-container {
+        padding-bottom: 16px;
+        margin-left: 20px;
+      }
+      
+      .demo-button + .demo-button {
+        margin-left: 8px;
+      }
+      mat-paginator{
+        width: 90%;
+        margin-left: 20px;
+      }
+
+      .menu-button{
+        display: flex !important;
+        margin-bottom: 1px !important;
+        position: relative !important;
+        width: 100% !important;
+        padding-left: 10px !important;
+      }
+
+  }

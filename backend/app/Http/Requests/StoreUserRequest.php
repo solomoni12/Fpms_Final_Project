@@ -35,17 +35,4 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ];
     }
-    // public function rules()
-    // {
-    //     return [
-    //         'fname' => ['required', 'string', 'max:255'],
-    //         'lname' => ['required', 'string', 'max:255'],
-    //         'sex' => ['required', 'string', 'max:6'],
-    //         'physical_address' => ['required', 'string', 'max:255'],
-    //         'phone_number' => ['required', 'string', 'digits:10'],
-    //         'email' => ['required', 'string', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'confirmed', Rules\Password::defaults()]
-        
-    //     ];
-    // }
 }

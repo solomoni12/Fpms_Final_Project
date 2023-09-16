@@ -1,6 +1,60 @@
 <mat-sidenav-container class="container">
     <mat-sidenav #sidebar mode="side" opened="">
-      <app-sidebar></app-sidebar>
+      <!-- <app-sidebar></app-sidebar> -->
+      <!-- side bar -->
+      <div class="navbar">
+        <div class="top">
+            <!-- <mat-icon>notifications_none</mat-icon> -->
+        </div>
+        <div class="user">
+            <img [src] = "imageUrl" alt="Dynamic image" class="rounded-image">
+        </div>
+        <div class="menu">
+            <div class="menu-head">
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item">
+                <button mat-button class="menu-button" [routerLink]="['']">
+                    <mat-icon>home</mat-icon>
+                    <span>Home</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/farm']">
+                    <mat-icon>dashboard</mat-icon>
+                    <span>Farm</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/worker']">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Worker</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/workerReferee']">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Worker Referee</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/assigment']">
+                    <mat-icon>assignment</mat-icon>
+                    <span>Farm Assigment</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/equipment']">
+                    <mat-icon>view_list</mat-icon>
+                    <span>Equipment</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/crop']">
+                    <mat-icon>view_list</mat-icon>
+                    <span>Crop</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isuser" [routerLink]="['/product']">
+                    <mat-icon>view_list</mat-icon>
+                    <span>Product</span>
+                </button>
+                <button mat-button class="menu-button" *ngIf="isadminuser" [routerLink]="['/user']">
+                    <mat-icon>account_circle</mat-icon>
+                    <span >User list</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end sidebar -->
+
     </mat-sidenav> 
     <mat-sidenav-content>
       <div class="content">
@@ -11,8 +65,8 @@
             <mat-form-field class="custom-label" appearance="legacy">
               <mat-label >{{ useremail }}</mat-label>
               <mat-select disableRipple>
-                <mat-option routerLink="/profile" >Profile</mat-option>
-                <mat-option routerLink="/change-change" >Change password</mat-option>
+                <mat-option (click)="sidebar.toggle()" routerLink="/profile" >Profile</mat-option>
+                <mat-option (click)="sidebar.toggle()" routerLink="/change-change" >Change password</mat-option>
                 <mat-option (click)="logout()">Logout</mat-option>
               </mat-select>
             </mat-form-field>

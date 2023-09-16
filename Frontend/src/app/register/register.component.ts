@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit {
       if (password === confirmPassword) {
         this.service.register(this.registerform.value).subscribe(
           res => {
-
             alertifyjs.success('User registered successfully');
             this.registerform.reset();
             this.router.navigate(['/']);

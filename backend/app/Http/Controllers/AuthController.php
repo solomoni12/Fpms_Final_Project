@@ -32,8 +32,6 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=> Hash::make($request->password),
         ]);
-
-
         return $this->success([
             'user' => $user,
             'token' => $user->createToken('API token of' . $user->lname)->plainTextToken
