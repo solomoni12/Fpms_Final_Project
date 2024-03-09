@@ -43,7 +43,7 @@ export class AuthService {
     http://127.0.0.1:8000/api
     https://fpmsapi.solo.co.tz/api
   */
-  urlapi = 'https://fpmsapi.solo.co.tz/api';
+  urlapi = 'http://127.0.0.1:8000/api';
   
   updateuser(code:any, inputdata:any){
     return this.http.put(`${this.urlapi}/farms/${code}`, inputdata);
